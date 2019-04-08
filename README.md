@@ -1,4 +1,4 @@
-# ezredux
+# flrx
 
 A new Flutter package project.
 
