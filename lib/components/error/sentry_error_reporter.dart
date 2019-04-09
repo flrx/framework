@@ -4,7 +4,7 @@ import 'package:meta/meta.dart';
 import 'package:sentry/sentry.dart';
 
 /// Sentry Error Reporter from [https://flutter.dev/docs/cookbook/maintenance/error-reporting]
-class SentryErrorReporter extends ErrorReporter {
+class SentryErrorReporter with ErrorReporter {
   SentryErrorReporter({@required String dsn})
       : _sentry = SentryClient(dsn: dsn);
 

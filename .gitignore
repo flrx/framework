@@ -3,6 +3,9 @@
 
 .packages
 .pub/
+pubspec.lock
+
+doc/api
 
 build/
 ios/.generated/

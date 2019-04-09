@@ -16,6 +16,7 @@ void main() {
   Function flutterErrorBlock = () => throw flutterError;
   MockLogger logger = MockLogger();
   Application.registrar.registerSingleton<Logger>(logger);
+
   group("error_reporter", () {
     setUp(() {
       reporter = MockErrorReporter();
@@ -35,6 +36,7 @@ void main() {
 
     /// This is not a reliable test
     test('test_catch_exception_disabled_debug_mode_reporting', () async {
+      reporter.reportOnDebug = false;
       ErrorHandler.init(reporter: reporter).runApp(exceptionBlock);
       await untilCalled(logger.log(captureAny));
       verify(logger.log(captureAny)).called(greaterThanOrEqualTo(1));
@@ -42,6 +44,7 @@ void main() {
     });
 
     test('test_catch_flutter_error_debug_mode_reporting', () async {
+      reporter.reportOnDebug = true;
       ErrorHandler.init(reporter: reporter).runApp(flutterErrorBlock);
       await untilCalled(reporter.reportError(captureAny, captureAny));
       verify(reporter.reportError(flutterError, captureAny)).called(1);
