@@ -11,6 +11,7 @@ class AppRouter {
     });
   }
 
+  // TODO(ibrahim-mubarak): Rename this to be more concise and readable in code.
   static String generateParamRoute(String route, Map<String, String> params) {
     return route.replaceAllMapped(RegExp("(:[a-zA-Z_]+)"), (Match match) {
       if (match.groupCount > 0) {
