@@ -23,14 +23,12 @@ void main() {
       //Test http://mockserver/test
       var path = "/test";
       Response response = await dio.get(path);
-      expect(response.data['data']['path'], path);
-      expect(response.data["errCode"], 0);
+      expect(response.data['path'], path);
 
       //Test http://mockserver/test/nested
       path = "/test/nested";
       response = await dio.get(path);
-      expect(response.data['data']['path'], path);
-      expect(response.data["errCode"], 0);
+      expect(response.data['path'], path);
     });
 
     test('Test with nested Base Url with path starting with /', () async {
@@ -39,20 +37,17 @@ void main() {
       //Test http://mockserver/
       var path = "/";
       Response response = await dio.get(path);
-      expect(response.data['data']['path'], "/");
-      expect(response.data["errCode"], 0);
+      expect(response.data['path'], "/");
 
       //Test http://mockserver/api/
       path = "";
       response = await dio.get(path);
-      expect(response.data['data']['path'], "/api/");
-      expect(response.data["errCode"], 0);
+      expect(response.data['path'], "/api/");
 
       //Test http://mockserver/api/test
       path = "/test";
       response = await dio.get(path);
-      expect(response.data['data']['path'], path);
-      expect(response.data["errCode"], 0);
+      expect(response.data['path'], path);
     });
   });
 }

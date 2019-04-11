@@ -15,10 +15,7 @@ class MockAdapter extends HttpClientAdapter {
       Stream<List<int>> requestStream, Future cancelFuture) async {
     Uri uri = options.uri;
     return ResponseBody.fromString(
-      jsonEncode({
-        "errCode": 0,
-        "data": {"path": uri.path}
-      }),
+      jsonEncode({"path": uri.path}),
       200,
       DioHttpHeaders.fromMap({
         HttpHeaders.contentTypeHeader: ContentType.json,
