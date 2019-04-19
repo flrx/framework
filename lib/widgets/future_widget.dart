@@ -4,35 +4,35 @@ import 'package:flutter/material.dart';
 class FutureWidget extends StatelessWidget {
   FutureWidget(
       {@required this.status,
-      @required this.buildOnSuccess,
-      this.buildOnInitial,
-      this.buildOnFailed,
-      this.buildOnFetching});
+      @required this.onSuccess,
+      @required this.onFailed,
+      this.onInitial,
+      this.onFetching});
 
   final FutureStatus status;
 
-  final Widget Function() buildOnInitial;
+  final Widget onInitial;
 
-  final Widget Function() buildOnFetching;
+  final Widget onFetching;
 
-  final Widget Function() buildOnSuccess;
+  final Widget onSuccess;
 
-  final Widget Function() buildOnFailed;
+  final Widget onFailed;
 
   @override
   Widget build(BuildContext context) {
-    if (status == FutureStatus.INITIAL) {
-      Widget Function() initialBuilder = buildOnInitial ?? _buildOnFetching;
-      return initialBuilder();
-    } else if (status == FutureStatus.FETCHING) {
-      Widget Function() fetchingBuilder = buildOnFetching ?? _buildOnFetching;
-      return fetchingBuilder();
-    } else if (status == FutureStatus.SUCCESS) {
-      return buildOnSuccess();
-    } else if (status == FutureStatus.FAILED) {
-      return buildOnFailed();
+    switch (status) {
+      case FutureStatus.INITIAL:
+        return onInitial ?? onFetching ?? _buildOnFetching();
+      case FutureStatus.FETCHING:
+        return onFetching ?? _buildOnFetching();
+      case FutureStatus.SUCCESS:
+        return onSuccess;
+      case FutureStatus.FAILED:
+        return onFailed;
+      default:
+        return Container();
     }
-    return Container();
   }
 
   Widget _buildOnFetching() {
