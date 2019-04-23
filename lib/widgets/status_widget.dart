@@ -1,15 +1,15 @@
-import 'package:flrx/models/enums/future_status.dart';
+import 'package:flrx/models/enums/status.dart';
 import 'package:flutter/material.dart';
 
-class FutureWidget extends StatelessWidget {
-  FutureWidget(
+class StatusWidget extends StatelessWidget {
+  StatusWidget(
       {@required this.status,
       @required this.onSuccess,
       @required this.onFailed,
       this.onInitial,
       this.onFetching});
 
-  final FutureStatus status;
+  final Status status;
 
   final Widget onInitial;
 
@@ -22,13 +22,13 @@ class FutureWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     switch (status) {
-      case FutureStatus.INITIAL:
+      case Status.INITIAL:
         return onInitial ?? onFetching ?? _buildOnFetching();
-      case FutureStatus.FETCHING:
+      case Status.FETCHING:
         return onFetching ?? _buildOnFetching();
-      case FutureStatus.SUCCESS:
+      case Status.SUCCESS:
         return onSuccess;
-      case FutureStatus.FAILED:
+      case Status.FAILED:
         return onFailed;
       default:
         return Container();

@@ -1,1 +1,0 @@
-enum FutureStatus { INITIAL, FETCHING, SUCCESS, FAILED }
