@@ -1,0 +1,1 @@
+enum Status { INITIAL, FETCHING, SUCCESS, FAILED }
