@@ -19,12 +19,12 @@ dependencies:
   redux_thunk: ^0.2.1
   redux_persist_flutter: ^0.8.1
   get_it: ^1.0.3
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito: ^4.0.0
-
+  args: ^1.5.1
+  path: ^1.6.2
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
 
