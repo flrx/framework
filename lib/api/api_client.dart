@@ -13,7 +13,10 @@ class ApiClient extends Dio {
     interceptors.add(BaseUrlInterceptor());
   }
 
-  void setDefaultHeader(Map<String, String> headers) {
-    options.headers = headers;
-  }
+  Map<String, String> get headers => options.headers;
+
+  set headers(Map<String, String> newHeaders) => options.headers = newHeaders;
+
+  @deprecated
+  void setDefaultHeader(Map<String, String> headers) => this.headers = headers;
 }
