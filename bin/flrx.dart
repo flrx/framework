@@ -1,26 +1,23 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
+import 'package:args/command_runner.dart';
 
-import 'commands/base_command.dart';
-import 'commands/help_command.dart';
-import 'module_generator.dart';
+import 'commands/make_module.dart';
+import 'commands/make_page.dart';
 
 ArgResults results;
 
-void main(List<String> arguments) {
+void main(List<String> arguments) async {
   exitCode = 0;
-  final parser = new ArgParser();
   List<Command> registerCommands = <Command>[
-    HelpCommand(parser),
-    ModuleGenerator(parser)
+    MakeModuleCommand(),
+    MakePageCommand()
   ];
-
-  registerCommands.forEach((Command c) {
-    parser.addOption(c.name, abbr: c.abbr, help: c.help);
-  });
-  results = parser.parse(arguments);
-  registerCommands.forEach((Command c) {
-    if (results.wasParsed(c.name)) c.handler(results);
-  });
+  CommandRunner runner = CommandRunner(
+    "flrx",
+    "flrx: An Opinionated Flutter Redux Framework",
+  );
+  registerCommands.forEach(runner.addCommand);
+  runner.run(arguments);
 }

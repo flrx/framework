@@ -1,0 +1,13 @@
+import 'package:flrx/pages/page.dart';
+import 'package:flrx/pages/viewmodels/stateless_page_vm.dart';
+import 'package:flutter/material.dart';
+
+class PageName extends StatelessWidget with Page<AppState, StatelessPageVM> {
+  @override
+  Widget buildContent(BuildContext context, vm) {
+    return Container();
+  }
+
+  @override
+  initViewModel() => StatelessPageVM();
+}
