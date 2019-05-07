@@ -1,10 +1,10 @@
-import 'package:flrx/pages/viewmodels/viewmodel.dart';
 import 'package:redux/redux.dart';
+import 'package:flrx/pages/viewmodel.dart';
+import 'package:%SRC_PATH%/store/state/%STATE_FILENAME%.dart';
 
-// TODO: Use your redux state here
-class StatelessPageVM extends ViewModel<AppState> {
+class %VIEWMODEL_NAME% extends ViewModel<%STATE%> {
   @override
-  void init(Store store) {
+  void init(Store<%STATE%> store) {
     // TODO: implement init
   }
 }
