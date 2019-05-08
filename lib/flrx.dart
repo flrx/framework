@@ -2,7 +2,6 @@ library flrx;
 
 export 'package:flrx/pages/page.dart';
 export 'package:flrx/pages/viewmodel.dart';
-
 export 'api/api_client.dart';
 export 'application.dart';
 export 'components/error/error.dart';

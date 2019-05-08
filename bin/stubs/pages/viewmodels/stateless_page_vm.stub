@@ -1,0 +1,10 @@
+import 'package:redux/redux.dart';
+import 'package:flrx/pages/viewmodel.dart';
+import 'package:%SRC_PATH%/store/state/%STATE_FILENAME%.dart';
+
+class %VIEWMODEL_NAME% extends ViewModel<%STATE%> {
+  @override
+  void init(Store<%STATE%> store) {
+    // TODO: implement init
+  }
+}
