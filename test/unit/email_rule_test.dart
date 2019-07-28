@@ -51,4 +51,8 @@ void main() {
       expect(validationError, "$emailId is not a valid email address");
     });
   });
+  test("empty_email_test", () {
+    String validationError = rule.validate("email", '');
+    expect(validationError, "email should not be empty!");
+  });
 }
