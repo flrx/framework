@@ -32,7 +32,7 @@ class MockRouteRetriever extends RouteRetriever {
   Handler getNotFoundHandler() {
     Handler notFoundHandler = Handler(
         handlerFunc: (BuildContext context, Map<String, List<String>> params) {
-      print("Route not found");
+      return Text("Route not found");
     });
     return notFoundHandler;
   }

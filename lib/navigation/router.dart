@@ -22,6 +22,7 @@ class AppRouter {
               "Param cannot be null. $paramName is passed as null");
         return param;
       }
+      return '';
     });
   }
 }
