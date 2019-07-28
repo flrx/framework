@@ -1,0 +1,9 @@
+import 'package:flrx/utils/validator/rule.dart';
+
+class %RULE_NAME% extends Rule {
+  @override
+  String validate(String entityName, String value) {
+    //
+    return null;
+  }
+}

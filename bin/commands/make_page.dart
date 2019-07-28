@@ -4,30 +4,24 @@ import 'package:args/command_runner.dart';
 import 'package:recase/recase.dart';
 
 import '../utils/application_utils.dart';
+import '../utils/module_parser.dart';
 import '../utils/stub_utils.dart';
 
-class MakePageCommand extends Command {
+class MakePageCommand extends Command with ModuleParser {
   final String description = "Create a new Page";
 
   final String name = "make:page";
 
   MakePageCommand() {
-    argParser
-      ..addOption(
-        "module",
-        abbr: 'm',
-        help: "Create page in specific module (optional)",
-      )
-      ..addOption(
-        "state",
-        abbr: 's',
-        help: "State to use for ViewModel and Page (optional)",
-      );
+    addModuleOption(argParser, 'page');
+    argParser.addOption(
+      "state",
+      abbr: 's',
+      help: "State to use for ViewModel and Page (optional)",
+    );
   }
 
   String get pageName => argResults.rest.single;
-
-  String get moduleName => argResults['module'].toLowerCase();
 
   String get viewModelName => pageName + 'VM';
 
@@ -36,8 +30,6 @@ class MakePageCommand extends Command {
       (moduleName == null
           ? 'AppState'
           : '${ReCase(moduleName).pascalCase}AppState');
-
-  String get modulePath => moduleName == null ? '' : "/modules/$moduleName";
 
   String get path =>
       moduleName == null ? 'lib/pages/' : "lib/$modulePath/pages/";
