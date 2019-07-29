@@ -7,8 +7,6 @@ import 'package:dio/dio.dart';
 class MockAdapter extends HttpClientAdapter {
   static const String mockHost = "mockserver";
   static const String mockBase = "http://$mockHost/";
-  DefaultHttpClientAdapter _defaultHttpClientAdapter =
-      DefaultHttpClientAdapter();
 
   @override
   Future<ResponseBody> fetch(RequestOptions options,
@@ -17,7 +15,7 @@ class MockAdapter extends HttpClientAdapter {
     return ResponseBody.fromString(
       jsonEncode({"path": uri.path}),
       200,
-      DioHttpHeaders.fromMap({
+      headers: DioHttpHeaders.fromMap({
         HttpHeaders.contentTypeHeader: ContentType.json,
       }),
     );

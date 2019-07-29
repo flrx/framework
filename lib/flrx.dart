@@ -1,7 +1,12 @@
+/// flrx is an opinionated library for using Redux with Flutter.
+/// TODO Add Explanations of terminology used throughout the library.
+/// TODO A couple of complete code samples that walk through using the API.
+/// TODO Links to the most important or most commonly used classes and functions.
+/// TODO Links to external references on the domain the library is concerned with.
 library flrx;
 
-export 'package:flrx/pages/page.dart';
-export 'package:flrx/pages/viewmodel.dart';
+export 'pages/page.dart';
+export 'pages/viewmodel.dart';
 export 'api/api_client.dart';
 export 'application.dart';
 export 'components/error/error.dart';
@@ -12,5 +17,5 @@ export 'navigation/route_retriever.dart';
 export 'navigation/router.dart';
 export 'store/middlewares/future.dart';
 export 'store/store_retriever.dart';
-export 'utils/validator.dart';
+export 'utils/validator/validator.dart';
 export 'widgets/flavor_app.dart';
