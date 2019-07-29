@@ -1,3 +1,5 @@
+[![Build Status](https://api.cirrus-ci.com/github/flrx/framework.svg)](https://cirrus-ci.com/github/flrx/framework)
+
 # flrx
 
 A new Flutter package project.
