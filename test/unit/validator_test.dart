@@ -6,9 +6,11 @@ import '../mocks/mock_validator_rule.dart';
 void main() {
   MockRule mockRule = MockRule();
   Validator validator;
+
   setUpAll(() {
     validator = Validator();
   });
+
   test('test_validation_rule_passes', () {
     Function validationFunction = validator.add(mockRule).run();
     String validationMessage = validationFunction(null);

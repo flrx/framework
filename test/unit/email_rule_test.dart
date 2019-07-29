@@ -1,10 +1,10 @@
-import 'package:flrx/utils/validator/email_rule.dart';
+import 'package:flrx/utils/validator/rules/email_rule.dart';
 import 'package:test_api/test_api.dart';
 
 // Test Cases are from Microsoft,
 // https://blogs.msdn.microsoft.com/testing123/2009/02/06/email-address-test-cases/
 void main() {
-  EmailRule rule = EmailRule();
+  String entityName = "email";
   List<String> validEmailIds = <String>[
     'abcd@example.com',
     'firstname.lastname@domain.com',
@@ -39,20 +39,25 @@ void main() {
     //  'email..email@domain.com',
     //  'email@domain',
   ];
+
+  EmailRule rule = EmailRule();
+
   test("valid_email_test", () {
     validEmailIds.forEach((String emailId) {
-      String validationError = rule.validate("email", emailId);
+      String validationError = rule.validate(entityName, emailId);
       expect(validationError, null);
     });
   });
+
   test("invalid_email_test", () {
     invalidEmailIds.forEach((String emailId) {
-      String validationError = rule.validate("email", emailId);
+      String validationError = rule.validate(entityName, emailId);
       expect(validationError, "$emailId is not a valid email address");
     });
   });
+
   test("empty_email_test", () {
-    String validationError = rule.validate("email", '');
+    String validationError = rule.validate(entityName, '');
     expect(validationError, "email should not be empty!");
   });
 }

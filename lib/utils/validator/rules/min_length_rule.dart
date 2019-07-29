@@ -8,7 +8,7 @@ class MinLengthRule extends Rule {
   @override
   String validate(String entityName, String value) {
     if (value.length < minLength) {
-      return "$entityName should be more than $minLength characters";
+      return "$entityName should be less than $minLength characters";
     }
     return null;
   }
