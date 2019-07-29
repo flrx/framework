@@ -8,7 +8,7 @@ class MaxLengthRule extends Rule<String> {
   @override
   String validate(String entityName, String value) {
     if (value.length > maxLength) {
-      return "$entityName should be more than $maxLength characters";
+      return "$entityName should be less than $maxLength characters";
     }
     return null;
   }
