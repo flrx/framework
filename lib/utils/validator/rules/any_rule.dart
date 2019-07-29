@@ -8,14 +8,13 @@ class AnyRule<T> extends Rule<T> {
 
   @override
   String validate(String entityName, T value) {
-    List<String> validationMessages = List();
-    for (Rule rule in _ruleList) {
-      String currentValidation = rule.validate(entityName, value);
-      if (currentValidation == null) {
-        return currentValidation;
-      }
-      validationMessages.add(currentValidation);
-    }
-    return validationMessage ?? validationMessages[0];
+    String ruleValidationMessage;
+    _ruleList.reversed.any((Rule<T> rule) {
+      ruleValidationMessage = rule.validate(entityName, value);
+      return ruleValidationMessage == null;
+    });
+    return ruleValidationMessage == null
+        ? ruleValidationMessage
+        : (validationMessage ?? ruleValidationMessage);
   }
 }

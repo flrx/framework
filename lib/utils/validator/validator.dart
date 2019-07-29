@@ -1,4 +1,3 @@
-
 import 'package:flrx/utils/validator/rule.dart';
 import 'package:flutter/widgets.dart';
 
@@ -9,7 +8,6 @@ import 'package:flutter/widgets.dart';
 /// The error message of the first [Rule] that fails is returned back.
 /// If all the [Rule]s pass, then null is returned to the [FormField].
 class Validator<T> {
-
   Validator({this.entityName = "Entity"});
 
   /// The name of the field that is being evaluated.
@@ -19,7 +17,7 @@ class Validator<T> {
   String entityName;
 
   /// List of all registered rules.
-  List<Rule> rulesList = [];
+  List<Rule<T>> rulesList = [];
 
   /// Registers a single [Rule] with the [Validator].
   Validator add(Rule rule) {
@@ -28,7 +26,7 @@ class Validator<T> {
   }
 
   /// Registers a List of [Rule] with the [Validator].
-  Validator addAll(List<Rule> rule) {
+  Validator addAll(List<Rule<T>> rule) {
     rulesList.addAll(rule);
     return this;
   }
@@ -39,12 +37,10 @@ class Validator<T> {
   /// Validates and returns an error message(if any).
   String validate(T value) {
     String validationMessage;
-    for (Rule rule in rulesList) {
+    rulesList.any((Rule<T> rule) {
       validationMessage = rule.validate(entityName, value);
-      if (validationMessage?.isNotEmpty == true) {
-        return validationMessage;
-      }
-    }
+      return validationMessage != null;
+    });
     return validationMessage;
   }
 }

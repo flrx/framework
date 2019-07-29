@@ -20,7 +20,7 @@ void main() {
 
   test("valid_any_rule_test", () {
     String validationError = rule.validate(entityName, validForMockRule);
-    expect(validationError, null);
+    expect(validationError, validForMockRule);
   });
 
   test("invalid_any_rule_test", () {

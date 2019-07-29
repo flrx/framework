@@ -7,11 +7,7 @@ class OneOfRule<T> extends Rule<T> {
 
   @override
   String validate(String entityName, T value) {
-    for (T acceptedValue in acceptedList) {
-      if (value == acceptedValue) {
-        return null;
-      }
-    }
-    return "$entityName is not in list of accepted values";
+    String validationMessage = "$entityName is not in list of accepted values";
+    return acceptedList.contains(value) ? null : validationMessage;
   }
 }
