@@ -1,13 +1,13 @@
 import 'package:flrx/utils/validator/rule.dart';
 
-class OneOfRule extends Rule {
-  final List<String> acceptedList;
+class OneOfRule<T> extends Rule<T> {
+  final List<T> acceptedList;
 
   OneOfRule(this.acceptedList);
 
   @override
-  String validate(String entityName, String value) {
-    for (String acceptedValue in acceptedList) {
+  String validate(String entityName, T value) {
+    for (T acceptedValue in acceptedList) {
       if (value == acceptedValue) {
         return null;
       }

@@ -8,7 +8,7 @@ import 'package:flutter/widgets.dart';
 /// [Validator] is supplied to the [Rule]s in the order they were registered.
 /// The error message of the first [Rule] that fails is returned back.
 /// If all the [Rule]s pass, then null is returned to the [FormField].
-class Validator {
+class Validator<T> {
 
   Validator({this.entityName = "Entity"});
 
@@ -34,10 +34,10 @@ class Validator {
   }
 
   /// Returns a [FormFieldValidator] to be used with a [FormField].
-  FormFieldValidator<String> build() => validate;
+  FormFieldValidator<T> build() => validate;
 
   /// Validates and returns an error message(if any).
-  String validate(String value) {
+  String validate(T value) {
     String validationMessage;
     for (Rule rule in rulesList) {
       validationMessage = rule.validate(entityName, value);

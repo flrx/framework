@@ -1,6 +1,6 @@
 import 'package:flrx/utils/validator/rule.dart';
 
-class MaxLengthRule extends Rule {
+class MaxLengthRule extends Rule<String> {
   final int maxLength;
 
   MaxLengthRule(this.maxLength);

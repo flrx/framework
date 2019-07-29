@@ -1,6 +1,6 @@
 import 'package:flrx/utils/validator/rule.dart';
 
-class MinLengthRule extends Rule {
+class MinLengthRule extends Rule<String> {
   final int minLength;
 
   MinLengthRule(this.minLength);

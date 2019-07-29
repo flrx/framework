@@ -6,7 +6,7 @@ void main() {
   String validString = "test1";
   String invalidString = "fail";
 
-  OneOfRule rule = OneOfRule(['test1', 'test2']);
+  OneOfRule<String> rule = OneOfRule<String>(['test1', 'test2']);
 
   test("valid_one_of_test", () {
     String validationError = rule.validate(entityName, validString);

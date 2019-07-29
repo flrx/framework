@@ -1,6 +1,6 @@
 import 'package:flrx/utils/validator/rule.dart';
 
-class EmailRule extends Rule {
+class EmailRule extends Rule<String> {
   final String emailRegex =
       r"^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,253}[a-zA-Z0-9])?)*$";
 
