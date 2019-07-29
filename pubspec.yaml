@@ -1,8 +1,8 @@
 name: flrx
 description: A Redux Application Framework.
-version: 0.0.1
-author:
-homepage:
+version: 0.0.2
+author: flrx
+homepage: https://github.com/flrx/framework
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
