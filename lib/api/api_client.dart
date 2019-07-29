@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flrx/src/api/interceptors/base_url_interceptor.dart';
 
 class ApiClient extends Dio {
   ApiClient({BaseOptions options}) : super(options) {
@@ -9,9 +10,13 @@ class ApiClient extends Dio {
         requestHeader: true,
         responseBody: true,
         responseHeader: true));
+    interceptors.add(BaseUrlInterceptor());
   }
 
-  void setDefaultHeader(Map<String, String> headers) {
-    options.headers = headers;
-  }
+  Map<String, String> get headers => options.headers;
+
+  set headers(Map<String, String> newHeaders) => options.headers = newHeaders;
+
+  @deprecated
+  void setDefaultHeader(Map<String, String> headers) => this.headers = headers;
 }

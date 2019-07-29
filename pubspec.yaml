@@ -19,18 +19,19 @@ dependencies:
   redux_thunk: ^0.2.1
   redux_persist_flutter: ^0.8.1
   get_it: ^1.0.3
-
+  args: ^1.5.1
+  path: ^1.6.2
+  yaml: ^2.1.15
+  recase: ^2.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
   mockito: ^4.0.0
-
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
 
 # The following section is specific to Flutter.
 flutter:
-
   # To add assets to your package, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
@@ -41,7 +42,6 @@ flutter:
   #
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
-
   # To add custom fonts to your package, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
