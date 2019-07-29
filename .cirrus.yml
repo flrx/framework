@@ -6,7 +6,6 @@ test_task:
     CODECOV_TOKEN: ENCRYPTED[49005b04b47f7c671439dcde4bea2cf02d603ef7dc7a36660cef2041261a66b5e1ea47e7e95ddfd3e2b6bcb237b553b1]
   pub_cache:
     folder: ~/.pub-cache
-    fingerprint_script: cat pubspec.lock
   test_script: flutter test --coverage
 
 after_success:
