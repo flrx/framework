@@ -12,13 +12,13 @@ void main() {
   });
 
   test('test_validation_rule_passes', () {
-    Function validationFunction = validator.add(mockRule).run();
+    Function validationFunction = validator.add(mockRule).build();
     String validationMessage = validationFunction(null);
     expect(validationMessage, null);
   });
 
   test('test_validation_rule_fails', () {
-    Function validationFunction = validator.add(mockRule).run();
+    Function validationFunction = validator.add(mockRule).build();
     String validationMessage = validationFunction("Fail");
     expect(validationMessage, "Fail");
   });
