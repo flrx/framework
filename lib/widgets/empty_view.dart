@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flrx/models/empty_view_message.dart';
 import 'package:flutter/material.dart';
 
@@ -75,8 +74,9 @@ class EmptyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget illustrationWidget =
-        illustration ?? _buildIllustration(emptyViewMessage?.illustrationUrl);
+    Widget illustrationWidget = illustration ??
+        _buildIllustration(emptyViewMessage?.illustrationPath,
+            emptyViewMessage?.illustrationSize);
     Widget descriptionWidget =
         description ?? _buildDescription(emptyViewMessage?.description);
     Widget actionWidget = action ??
@@ -93,11 +93,15 @@ class EmptyView extends StatelessWidget {
     );
   }
 
-  Widget _buildIllustration(String illustrationUrl) {
-    if (illustrationUrl == null) {
+  Widget _buildIllustration(String illustrationPath, Size size) {
+    if (illustrationPath == null) {
       return null;
     }
-    return Image(image: CachedNetworkImageProvider(illustrationUrl));
+    return Image(
+      height: size.height,
+      width: size.width,
+      image: AssetImage(illustrationPath),
+    );
   }
 
   Widget _buildDescription(String description) {
