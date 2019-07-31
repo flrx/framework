@@ -1,15 +1,23 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flrx/models/empty_view_message.dart';
 import 'package:flutter/material.dart';
 
 class EmptyView extends StatelessWidget {
-  const EmptyView(
+  const EmptyView.basic(
       {Key key,
-      this.emptyViewMessage,
-      this.illustration,
-      this.description,
-      this.action,
+      @required this.illustration,
+      @required this.description,
+      @required this.action,
       this.reversed = false})
-      : super(key: key);
+      : emptyViewMessage = null,
+        super(key: key);
+
+  const EmptyView.fromEmptyViewMessage(
+      {Key key, @required this.emptyViewMessage, this.reversed = false})
+      : illustration = null,
+        description = null,
+        action = null,
+        super(key: key);
 
   final EmptyViewMessage emptyViewMessage;
   final Widget illustration;
@@ -19,11 +27,12 @@ class EmptyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget illustrationWidget = illustration ?? emptyViewMessage?.illustration;
+    Widget illustrationWidget =
+        illustration ?? _buildIllustration(emptyViewMessage?.illustrationUrl);
     Widget descriptionWidget =
         description ?? _buildDescription(emptyViewMessage?.description);
     Widget actionWidget = action ??
-        _buildAction(emptyViewMessage?.actionTitle, emptyViewMessage?.onRetry);
+        _buildAction(emptyViewMessage?.actionTitle, emptyViewMessage?.onAction);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -36,6 +45,13 @@ class EmptyView extends StatelessWidget {
     );
   }
 
+  Widget _buildIllustration(String illustrationUrl) {
+    if (illustrationUrl == null) {
+      return null;
+    }
+    return Image(image: CachedNetworkImageProvider(illustrationUrl));
+  }
+
   Widget _buildDescription(String description) {
     if (description == null) {
       return null;
@@ -44,13 +60,13 @@ class EmptyView extends StatelessWidget {
   }
 
   Widget _buildAction(String actionTitle, Function onAction) {
-    if (actionTitle == null) {
+    if (actionTitle == null || onAction == null) {
       return null;
     }
     return RaisedButton(
       elevation: 1,
       child: Text(actionTitle ?? 'Retry'),
-      onPressed: () {},
+      onPressed: onAction,
     );
   }
 }

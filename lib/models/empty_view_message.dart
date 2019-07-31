@@ -2,16 +2,16 @@ import 'package:flutter/widgets.dart';
 
 class EmptyViewMessage {
   EmptyViewMessage({
-    this.description,
-    this.illustration,
+    @required this.description,
+    this.illustrationUrl,
     this.descriptionStyle,
     this.actionTitle,
-    this.onRetry,
+    this.onAction,
   });
 
   String description;
   String actionTitle;
-  Widget illustration;
+  String illustrationUrl;
   TextStyle descriptionStyle;
-  Function onRetry;
+  Function onAction;
 }
