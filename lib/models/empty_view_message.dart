@@ -1,7 +1,7 @@
 import 'package:flutter/widgets.dart';
 
-class ErrorMessage {
-  ErrorMessage({
+class EmptyViewMessage {
+  EmptyViewMessage({
     this.description,
     this.illustration,
     this.descriptionStyle,
