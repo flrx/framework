@@ -5,7 +5,7 @@ author: flrx
 homepage: https://github.com/flrx/framework
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
@@ -23,6 +23,7 @@ dependencies:
   path: ^1.6.2
   yaml: ^2.1.15
   recase: ^2.0.1
+  cached_network_image: ^1.1.1
 dev_dependencies:
   flutter_test:
     sdk: flutter

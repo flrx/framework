@@ -17,6 +17,6 @@ void main() {
   test("invalid_max_length_test", () {
     String validationError = rule.validate(entityName, invalidString);
     expect(validationError,
-        "$entityName should be more than $maxLength characters");
+        "$entityName should be less than $maxLength characters");
   });
 }
