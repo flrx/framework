@@ -1,7 +1,7 @@
 import 'package:flrx/utils/validator/rules/any_rule.dart';
 import 'package:test_api/test_api.dart';
 
-import '../mocks/mock_validator_rule.dart';
+import '../../mocks/mock_validator_rule.dart';
 
 void main() {
   String entityName = "any";

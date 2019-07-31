@@ -7,13 +7,9 @@ class RegexRule extends Rule<String> {
 
   @override
   String validate(String entityName, value) {
-    if (value.isEmpty) {
-      return '$entityName should not be empty!';
-    }
-
     RegExp regExp = RegExp(regex);
     if (!regExp.hasMatch(value)) {
-      return "$value is not a valid email address";
+      return "$value is not a valid pattern";
     }
     return null;
   }
