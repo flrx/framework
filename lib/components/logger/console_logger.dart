@@ -6,7 +6,8 @@ class ConsoleLogger extends Logger {
   void log(dynamic message) {
     if (message is FlutterErrorDetails) {
       FlutterError.dumpErrorToConsole(message);
-    } else
+    } else {
       debugPrint(message.toString());
+    }
   }
 }

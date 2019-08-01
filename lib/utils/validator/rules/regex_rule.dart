@@ -1,12 +1,12 @@
 import 'package:flrx/utils/validator/rule.dart';
 
 class RegexRule extends Rule<String> {
-  RegexRule(this.regex);
+  RegexRule(this.regex, {String validationMessage}) : super(validationMessage);
 
   final String regex;
 
   @override
-  String validate(String entityName, value) {
+  String onValidate(String entityName, value) {
     RegExp regExp = RegExp(regex);
     if (!regExp.hasMatch(value)) {
       return "$value is not a valid pattern";
