@@ -1,8 +1,10 @@
 import 'package:flrx/navigation/route_retriever.dart';
+import 'package:flrx/utils/string_utils.dart';
 import 'package:fluro/fluro.dart';
 
 class AppRouter {
   static Router router;
+
   static void init(RouteRetriever retriever) {
     router = Router();
     router.notFoundHandler = retriever.getNotFoundHandler();
@@ -11,18 +13,7 @@ class AppRouter {
     });
   }
 
-  // TODO(ibrahim-mubarak): Rename this to be more concise and readable in code.
-  static String generateParamRoute(String route, Map<String, String> params) {
-    return route.replaceAllMapped(RegExp("(:[a-zA-Z_]+)"), (Match match) {
-      if (match.groupCount > 0) {
-        String paramName = match.group(0).substring(1);
-        String param = params[paramName];
-        if (param == null)
-          throw ArgumentError(
-              "Param cannot be null. $paramName is passed as null");
-        return param;
-      }
-      return '';
-    });
-  }
+  @Deprecated('Use StringUtils.replaceWithValues() instead')
+  static String generateParamRoute(String route, Map<String, String> params) =>
+      StringUtils.replaceWithValues(route, params);
 }

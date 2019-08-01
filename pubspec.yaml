@@ -1,32 +1,32 @@
 name: flrx
 description: A Redux Application Framework.
-version: 0.0.2+2
+version: 0.0.3
 author: flrx
 homepage: https://github.com/flrx/framework
 
 environment:
-  sdk: ">=2.1.0 <3.0.0"
+  sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
-  dio: ^2.0.22
+  dio: ^2.1.13
   sentry: ^2.2.0
   flutter_i18n: ^0.6.3
-  fluro: ^1.4.0
+  fluro: ^1.5.1
   flutter_redux: ^0.5.3
   redux_logging: ^0.3.0
   redux_thunk: ^0.2.1
   redux_persist_flutter: ^0.8.1
-  get_it: ^1.0.3
-  args: ^1.5.1
+  get_it: ^1.0.3+2
+  args: ^1.5.2
   path: ^1.6.2
-  yaml: ^2.1.15
+  yaml: ^2.1.16
   recase: ^2.0.1
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  mockito: ^4.0.0
+  mockito: ^4.1.0
 # For information on the generic Dart part of this file, see the
 # following page: https://www.dartlang.org/tools/pub/pubspec
 

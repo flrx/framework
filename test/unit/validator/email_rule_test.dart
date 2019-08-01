@@ -58,6 +58,6 @@ void main() {
 
   test("empty_email_test", () {
     String validationError = rule.validate(entityName, '');
-    expect(validationError, "email should not be empty!");
+    expect(validationError, " is not a valid email address");
   });
 }

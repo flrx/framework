@@ -2,7 +2,7 @@
 
 # flrx
 
-A new Flutter package project.
+An opinionated library for using Redux with Flutter.
 
 ## Getting Started
 
@@ -15,6 +15,6 @@ For help getting started with Flutter, view our
 [online documentation](https://flutter.io/docs), which offers tutorials, 
 samples, guidance on mobile development, and a full API reference.
 
-##TODO
+## TODO
 
 Add Command Line Tools to generate files

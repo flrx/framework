@@ -17,6 +17,6 @@ void main() {
   test("invalid_min_length_test", () {
     String validationError = rule.validate(entityName, invalidString);
     expect(validationError,
-        "$entityName should be less than $minLength characters");
+        "$entityName should be more than $minLength characters");
   });
 }
