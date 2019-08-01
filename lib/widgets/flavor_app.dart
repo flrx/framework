@@ -14,6 +14,7 @@ class FlavoredApp extends StatelessWidget {
     if (showBanner && Config.isInDebugMode)
       return Directionality(
         child: Banner(
+          key: Key("banner"),
           child: child,
           location: BannerLocation.topStart,
           message: FlavorConfig.name,
