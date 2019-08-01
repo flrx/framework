@@ -3,7 +3,7 @@ import 'package:flrx/utils/validator/rules/one_of_rule.dart';
 import 'package:flrx/utils/validator/validator.dart';
 import 'package:test_api/test_api.dart';
 
-import '../mocks/mock_validator_rule.dart';
+import '../../mocks/mock_validator_rule.dart';
 
 void main() {
   MockRule mockRule = MockRule();

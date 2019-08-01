@@ -4,10 +4,11 @@ import 'package:flutter/widgets.dart';
 class EmptyViewMessage {
   EmptyViewMessage({
     @required this.description,
-    this.illustrationUrl,
+    this.illustrationPath,
     this.descriptionStyle,
     this.actionTitle,
     this.onAction,
+    this.illustrationSize,
   });
 
   /// A String variable depicting the message to be shown
@@ -18,9 +19,13 @@ class EmptyViewMessage {
   /// widget.
   String actionTitle;
 
-  /// A String variable depicting the url to be used for the
+  /// A String variable depicting the path to be used for the
   /// illustration widget of [EmptyView].
-  String illustrationUrl;
+  String illustrationPath;
+
+  /// A Size variable defining the height and width to be used
+  /// for the illustration widget of [EmptyView].
+  Size illustrationSize;
 
   /// A TextStyle variable specifying the styling for the
   /// [description].
