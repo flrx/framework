@@ -5,7 +5,6 @@ import '../../mocks/mock_validator_rule.dart';
 
 void main() {
   String entityName = "any";
-  String validationMessage = "Custom Rule Failed";
   String validForMockRule;
   String invalidForMockRule = "invalid";
 
@@ -13,10 +12,6 @@ void main() {
     MockRule(),
     MockAlwaysFailRule(),
   ]);
-  AnyRule ruleCustomMessage = AnyRule([
-    MockRule(),
-    MockAlwaysFailRule(),
-  ], validationMessage: validationMessage);
 
   test("valid_any_rule_test", () {
     String validationError = rule.validate(entityName, validForMockRule);
@@ -26,11 +21,5 @@ void main() {
   test("invalid_any_rule_test", () {
     String validationError = rule.validate(entityName, invalidForMockRule);
     expect(validationError, invalidForMockRule);
-  });
-
-  test("invalid_any_rule_test_custom_message", () {
-    String validationError =
-        ruleCustomMessage.validate(entityName, invalidForMockRule);
-    expect(validationError, validationMessage);
   });
 }

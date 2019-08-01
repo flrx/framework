@@ -1,21 +1,39 @@
-## [0.0.3]
-* Add Regex Rule
-* Add EmptyView Widget
-* Fix Tests for validation messages
+## [v0.0.3]
+### Added
+- Add `RegexRule`
+- Add `EmptyView` Widget
 
-## [0.0.2+2]
-* Fix Min Length and Max Length validation message
+### Changed
+- Allow Rules to give custom validation message
 
-## [0.0.2+1]
-* Deleted old Validator
+### Fixed
+- Fix Tests for validation messages
 
-## [0.0.2]
-* Refactored API Client (Deprecated setHeaders method).
-* Added Rule Class, refactored Validator (Breaking change).
-* Added Email Rule, Min Length Rule and Required Rule, Max Length Rule, Any Rule, One Of Rule.
-* Added make:rule command.
-* Improved Documentation.
+### Deprecated
+- `AppRouter.generateParamRoutes` in favor of `StringUtils.replaceWithValues`
 
-## [0.0.1] - TODO: Add release date.
+## [v0.0.2+2]
+### Fixed
+- Fix `MinLength` and `MaxLength` validation message
 
-* TODO: Describe initial release.
+## [v0.0.2+1]
+### Fixed
+- Deleted old `Validator`
+
+## [v0.0.2]
+### Added
+- Added `Rule` Class, refactored `Validator` (Breaking change).
+- Added `EmailRule`, `MinLengthRule` and `RequiredRule`, `MaxLengthRule`, `AnyRule`, `OneOfRule`.
+- Added `make:rule` command.
+
+### Changed
+- Improved Documentation.
+
+### Deprecated
+- Deprecate `ApiClient#setDefaultHeaders`.
+
+[v0.0.3]: https://github.com/flrx/framework/compare/v0.0.2+2...v0.0.3
+[v0.0.2+2]: https://github.com/flrx/framework/compare/v0.0.2+1...v0.0.2+2
+[v0.0.2+1]: https://github.com/flrx/framework/compare/v0.0.2...v0.0.2+1
+[v0.0.2]: https://github.com/flrx/framework/tag/v0.0.2
+

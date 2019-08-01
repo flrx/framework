@@ -3,13 +3,15 @@ import 'package:flrx/utils/validator/rule.dart';
 class MaxLengthRule extends Rule<String> {
   final int maxLength;
 
-  MaxLengthRule(this.maxLength);
+  MaxLengthRule(this.maxLength, {String validationMessage})
+      : super(validationMessage);
 
   @override
-  String validate(String entityName, String value) {
-    if (value.length > maxLength) {
-      return "$entityName should be less than $maxLength characters";
+  String onValidate(String entityName, String value) {
+    if (value.length <= maxLength) {
+      return null;
     }
-    return null;
+    return validationMessage ??
+        "$entityName should be less than $maxLength characters";
   }
 }
