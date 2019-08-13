@@ -17,5 +17,4 @@ export 'navigation/route_retriever.dart';
 export 'navigation/router.dart';
 export 'store/middlewares/future.dart';
 export 'store/store_retriever.dart';
-export 'utils/validator/validator.dart';
 export 'widgets/flavor_app.dart';

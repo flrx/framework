@@ -1,3 +1,7 @@
+## [v0.0.4]
+### Changed
+- **BREAKING**: Moved validator to it's own package. See [Flrx Validator](https://pub.dev/packages/flrx_validator)
+
 ## [v0.0.3]
 ### Added
 - Add `RegexRule`
@@ -32,6 +36,7 @@
 ### Deprecated
 - Deprecate `ApiClient#setDefaultHeaders`.
 
+[v0.0.4]: https://github.com/flrx/framework/compare/v0.0.3...v0.0.4
 [v0.0.3]: https://github.com/flrx/framework/compare/v0.0.2+2...v0.0.3
 [v0.0.2+2]: https://github.com/flrx/framework/compare/v0.0.2+1...v0.0.2+2
 [v0.0.2+1]: https://github.com/flrx/framework/compare/v0.0.2...v0.0.2+1
