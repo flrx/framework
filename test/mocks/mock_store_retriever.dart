@@ -2,18 +2,11 @@ import 'dart:convert';
 
 import 'package:flrx/store/store_retriever.dart';
 import 'package:redux/src/store.dart';
-import 'package:redux_persist/redux_persist.dart';
-import 'package:redux_persist/src/serialization.dart';
 
 class MockStoreRetriever extends StoreRetriever<MockAppState> {
   @override
-  MockAppState getInitialState() {
+  Future<MockAppState> getInitialState() async {
     return MockAppState.initialState();
-  }
-
-  @override
-  List<Middleware<MockAppState>> getModuleMiddlewares() {
-    return <Middleware<MockAppState>>[mockMiddleware];
   }
 
   @override
@@ -22,13 +15,9 @@ class MockStoreRetriever extends StoreRetriever<MockAppState> {
   }
 
   @override
-  StorageEngine getStorageEngine() =>
-      MemoryStorage(getSerializer().encode(getInitialState()));
-
-  @override
-  StateSerializer<MockAppState> getSerializer() {
-    return JsonSerializer<MockAppState>(MockAppState.fromJson);
-  }
+  List<Middleware<MockAppState>> getMiddlewares() => [
+        mockMiddleware,
+      ];
 }
 
 class MockAppState {
