@@ -1,8 +1,10 @@
+import 'dart:async';
+
 import 'package:dio/dio.dart';
 
 class BaseUrlInterceptor extends Interceptor {
   @override
-  onRequest(RequestOptions options) {
+  FutureOr<dynamic> onRequest(RequestOptions options) {
     // Base Url is set, check base url ends with /
     var baseUrl = options.baseUrl;
     if (baseUrl != null && !baseUrl.endsWith("/")) {

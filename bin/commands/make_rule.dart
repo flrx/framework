@@ -7,8 +7,10 @@ import '../utils/module_parser.dart';
 import '../utils/stub_utils.dart';
 
 class MakeRuleCommand extends Command with ModuleParser {
+  @override
   final String description = "Create a new Input Validation Rule";
 
+  @override
   final String name = "make:rule";
 
   MakeRuleCommand() {
