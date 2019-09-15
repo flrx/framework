@@ -1,6 +1,6 @@
 import 'package:flrx/components/logger/base_logger.dart';
 import 'package:flrx/store/middlewares/future.dart';
-import 'package:logging/logging.dart' as nativeLogger;
+import 'package:logging/logging.dart' as native_logger;
 import 'package:redux/redux.dart';
 import 'package:redux_logging/redux_logging.dart';
 import 'package:redux_persist/redux_persist.dart';
@@ -54,7 +54,7 @@ abstract class StoreRetriever<State> {
     LoggingMiddleware<State> loggingMiddleware = LoggingMiddleware<State>(
       formatter: LoggingMiddleware.multiLineFormatter,
     );
-    loggingMiddleware.logger.onRecord.where((nativeLogger.LogRecord record) {
+    loggingMiddleware.logger.onRecord.where((native_logger.LogRecord record) {
       return record.loggerName == loggingMiddleware.logger.name;
     }).listen(log);
     return loggingMiddleware;

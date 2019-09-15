@@ -9,7 +9,7 @@ class StubUtils {
       {@required String stubPath,
       @required String destPath,
       @required Map<String, String> stubReplacements}) {
-    createDirectory(File(destPath + ".dart").parent.path);
+    createDirectory(File("$destPath.dart").parent.path);
     String sourceDirectory = ApplicationUtils.getScriptDirectory();
 
     File stubFile = File("$sourceDirectory$stubPath.stub");

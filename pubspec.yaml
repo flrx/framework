@@ -33,5 +33,6 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  pedantic: ^1.8.0+1
   mockito: ^4.1.0
   test_api: ^0.2.5

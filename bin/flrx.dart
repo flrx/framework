@@ -19,5 +19,5 @@ void main(List<String> arguments) async {
     "flrx: An Opinionated Flutter Redux Framework",
   );
   registerCommands.forEach(runner.addCommand);
-  runner.run(arguments);
+  await runner.run(arguments);
 }
