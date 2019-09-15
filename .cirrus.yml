@@ -3,7 +3,7 @@ container:
 
 style_task:
   test_style_script:
-    - flutter format --set-exit-if-changed lib test
+    - flutter format -n --set-exit-if-changed lib test
 
 test_task:
   env:
