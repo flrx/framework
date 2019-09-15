@@ -8,8 +8,10 @@ import '../utils/module_parser.dart';
 import '../utils/stub_utils.dart';
 
 class MakePageCommand extends Command with ModuleParser {
+  @override
   final String description = "Create a new Page";
 
+  @override
   final String name = "make:page";
 
   MakePageCommand() {
@@ -23,7 +25,7 @@ class MakePageCommand extends Command with ModuleParser {
 
   String get pageName => argResults.rest.single;
 
-  String get viewModelName => pageName + 'VM';
+  String get viewModelName => '${pageName}VM';
 
   String get stateName =>
       argResults['state'] ??

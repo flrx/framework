@@ -13,18 +13,18 @@ class EmptyView extends StatelessWidget {
   /// and a [reversed] `boolean` variable. This allows full
   /// flexibility and customisability for building the widget.
   const EmptyView(
-      {Key key,
-      @required this.description,
+      {@required this.description,
       this.illustration,
       this.action,
-      this.reversed = false})
+      this.reversed = false,
+      Key key})
       : emptyViewMessage = null,
         super(key: key);
 
   /// The named [EmptyView] constructor taking [emptyViewMessage]
   /// and [reversed] as arguments.
   const EmptyView.fromEmptyViewMessage(
-      {Key key, @required this.emptyViewMessage, this.reversed = false})
+      {@required this.emptyViewMessage, this.reversed = false, Key key})
       : illustration = null,
         description = null,
         action = null,

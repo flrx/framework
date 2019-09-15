@@ -8,7 +8,7 @@ void main() {
   group('Base Url Interceptor', () {
     Dio dio;
     setUp(() {
-      dio = new Dio();
+      dio = Dio();
       dio.options.baseUrl = MockAdapter.mockBase;
       dio.httpClientAdapter = MockAdapter();
       dio.interceptors.add(BaseUrlInterceptor());

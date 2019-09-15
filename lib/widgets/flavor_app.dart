@@ -11,7 +11,7 @@ class FlavoredApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (showBanner && Config.isInDebugMode)
+    if (showBanner && Config.isInDebugMode) {
       return Directionality(
         child: Banner(
           child: child,
@@ -20,7 +20,7 @@ class FlavoredApp extends StatelessWidget {
         ),
         textDirection: TextDirection.ltr,
       );
-    else
-      return child;
+    }
+    return child;
   }
 }
