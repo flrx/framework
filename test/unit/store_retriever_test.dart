@@ -7,7 +7,7 @@ import 'package:test_api/test_api.dart';
 import '../mocks/mock_store_retriever.dart';
 
 void main() async {
-  Application.registrar.registerSingleton<Logger>(ConsoleLogger());
+  Application.serviceLocator.registerSingleton<Logger>(ConsoleLogger());
   StoreRetriever<MockAppState> storeRetriever = MockStoreRetriever();
 
   test('test store reducer', () async {

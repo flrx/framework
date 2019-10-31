@@ -15,7 +15,7 @@ void main() {
   Function exceptionBlock = () => throw testException;
   Function flutterErrorBlock = () => throw flutterError;
   MockLogger logger = MockLogger();
-  Application.registrar.registerSingleton<Logger>(logger);
+  Application.serviceLocator.registerSingleton<Logger>(logger);
 
   group("error_reporter", () {
     setUp(() {
