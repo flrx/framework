@@ -43,6 +43,8 @@ abstract class Page<State, V extends ViewModel<State>> {
   /// TabController, etc
   void onWillChange(BuildContext context, V viewModel) {}
 
+  bool get hasDistinctVm => false;
+
   /// A function building the logic for the page
   ///
   /// While using the page mixing the [build] function in the widget
@@ -50,6 +52,7 @@ abstract class Page<State, V extends ViewModel<State>> {
   /// be used in place of it.
   Widget build(BuildContext context) {
     return StoreConnector<State, V>(
+      distinct: hasDistinctVm,
       onInit: onInit,
       onInitialBuild: onInitialBuild,
       onWillChange: (V viewModel) => onWillChange(context, viewModel),
