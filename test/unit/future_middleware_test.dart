@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flrx/store/middlewares/future.dart';
 import 'package:redux/redux.dart';
-import 'package:test_api/test_api.dart';
+import 'package:test/test.dart';
 
 class Action {}
 

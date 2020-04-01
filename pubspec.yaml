@@ -5,32 +5,32 @@ author: Flrx Team <flrx.dev@gmail.com>
 homepage: https://github.com/flrx/framework
 
 environment:
-  sdk: ">=2.2.2 <3.0.0"
+  sdk: ">=2.6.0 <3.0.0"
 
 dependencies:
   flutter:
     sdk: flutter
   # Flutter Specific Packages
-  flutter_i18n: ^0.6.4
-  fluro: ^1.5.1
-  flutter_redux: ^0.5.3
-  sentry: ^2.2.0
+  flutter_i18n: ^0.13.0
+  fluro: ^1.6.2
+  flutter_redux: ^0.6.0
+  sentry: ^3.0.1
   # Dart 2 Packages
-  meta: ^1.1.6
-  logging: ^0.11.3+2
-  flrx_validator: ^0.3.0
-  dio: 2.1.13
-  redux: ^3.0.0
-  redux_logging: ^0.3.0
-  redux_thunk: ^0.2.1
-  get_it: ^3.0.0+1
-  args: ^1.5.2
-  path: ^1.6.2
-  yaml: ^2.1.16
-  recase: ^2.0.1
+  meta: ^1.1.8
+  logging: ^0.11.4
+  flrx_validator: ^0.4.0+2
+  dio: 3.0.9
+  redux: ^4.0.0
+  redux_logging: ^0.4.0
+  redux_thunk: ^0.3.0
+  get_it: ^4.0.1
+  args: ^1.6.0
+  path: ^1.6.4
+  yaml: ^2.2.0
+  recase: ^3.0.0
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  pedantic: ^1.8.0+1
-  mockito: ^4.1.0
-  test_api: ^0.2.5
+  pedantic: ^1.9.0
+  mockito: ^4.1.1
+  test: ^1.14.2

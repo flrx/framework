@@ -2,9 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:dio/adapter.dart';
 import 'package:dio/dio.dart';
 
-class MockAdapter extends HttpClientAdapter {
+/// TODO(ibrahim-mubarak): We should remove dependency on Dio altogether
+class MockAdapter extends DefaultHttpClientAdapter {
   static const String mockHost = "mockserver";
   static const String mockBase = "http://$mockHost/";
 
@@ -15,9 +17,9 @@ class MockAdapter extends HttpClientAdapter {
     return ResponseBody.fromString(
       jsonEncode({"path": uri.path}),
       200,
-      headers: DioHttpHeaders.fromMap({
-        HttpHeaders.contentTypeHeader: ContentType.json,
-      }),
+      headers: {
+        HttpHeaders.contentTypeHeader: [ContentType.json.toString()],
+      },
     );
   }
 }

@@ -2,19 +2,29 @@ import 'dart:async';
 
 import 'package:dio/dio.dart';
 
+/// TODO(ibrahim-mubarak): We should maybe submit this to dio
 class BaseUrlInterceptor extends Interceptor {
   @override
-  FutureOr<dynamic> onRequest(RequestOptions options) {
+  Future<dynamic> onRequest(RequestOptions options) async {
     // Base Url is set, check base url ends with /
     var baseUrl = options.baseUrl;
-    if (baseUrl != null && !baseUrl.endsWith("/")) {
+
+    // Base URL is null, Continue as is
+    if (baseUrl == null) {
+      return options;
+    }
+
+    // If Base Url doesn't have a trailing slash, we can't set relative URLs,
+    if (!baseUrl.endsWith("/")) {
       throw ArgumentError("Base Url '$baseUrl' should end with '/'");
     }
-    // Base Url is set and path starts with /, Start path from domain rather than base url
-    if (baseUrl != null && options.path.startsWith("/")) {
+
+    // Path starts with '/', Start path from domain rather than base url
+    if (options.path.startsWith("/")) {
       Uri uri = Uri.parse(baseUrl).replace(path: options.path);
       options.path = uri.toString();
     }
-    super.onRequest(options);
+
+    return options;
   }
 }

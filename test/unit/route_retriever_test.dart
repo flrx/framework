@@ -1,6 +1,6 @@
 import 'package:flrx/navigation/route_retriever.dart';
 import 'package:fluro/fluro.dart';
-import 'package:test_api/test_api.dart';
+import 'package:test/test.dart';
 
 import '../mocks/mock_route_retriever.dart';
 

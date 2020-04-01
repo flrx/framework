@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flrx/src/api/interceptors/base_url_interceptor.dart';
-import 'package:test_api/test_api.dart';
+import 'package:test/test.dart';
 
 import '../mocks/mock_dio_client_adapter.dart';
 

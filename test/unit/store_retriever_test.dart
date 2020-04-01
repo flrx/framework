@@ -2,7 +2,7 @@ import 'package:flrx/application.dart';
 import 'package:flrx/components/logger/logger.dart';
 import 'package:flrx/store/store_retriever.dart';
 import 'package:redux/redux.dart';
-import 'package:test_api/test_api.dart';
+import 'package:test/test.dart';
 
 import '../mocks/mock_store_retriever.dart';
 
