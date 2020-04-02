@@ -43,9 +43,9 @@ class ErrorHandler {
   }
 
   void runApp(Function appFunction) {
-    runZonedGuarded(() async {
+    runZoned(() async {
       appFunction();
-    }, reportError);
+    }, onError: reportError);
   }
 
   void reportError(dynamic error, StackTrace stackTrace) async {
