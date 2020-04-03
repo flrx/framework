@@ -43,7 +43,7 @@ class ErrorHandler {
   }
 
   void runApp(Function appFunction) {
-    runZoned(() async {
+    runZoned<Future<void>>(() async {
       appFunction();
     }, onError: reportError);
   }
