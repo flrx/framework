@@ -1,5 +1,5 @@
 import 'package:flrx/utils/string_utils.dart';
-import 'package:test_api/test_api.dart';
+import 'package:test/test.dart';
 
 void main() {
   group('routes replaceWithValues function test', () {

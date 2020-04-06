@@ -1,9 +1,9 @@
 import 'package:get_it/get_it.dart';
 
 class ServiceLocator {
-  GetIt _serviceLocator = GetIt.instance;
+  final GetIt _serviceLocator = GetIt.instance;
 
-  T get<T>([String name]) => _serviceLocator.get<T>(name);
+  T get<T>([String name]) => _serviceLocator.get<T>(instanceName: name);
 
   void registerSingleton<T>(T instance, [String name]) =>
       _serviceLocator.registerSingleton<T>(instance, instanceName: name);

@@ -1,6 +1,6 @@
 import 'package:flrx/components/error/error.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_api/test_api.dart';
+import 'package:test/test.dart';
 
 import '../mocks/mock_error_reporter.dart';
 import '../mocks/mock_logger.dart';

@@ -41,7 +41,11 @@ abstract class Page<State, V extends ViewModel<State>> {
   ///
   /// This can be useful for imperative calls to things like Navigator,
   /// TabController, etc
-  void onWillChange(BuildContext context, V viewModel) {}
+  void onWillChange(
+    BuildContext context,
+    V previousViewModel,
+    V newViewModel,
+  ) {}
 
   /// A function building the logic for the page
   ///
@@ -52,7 +56,8 @@ abstract class Page<State, V extends ViewModel<State>> {
     return StoreConnector<State, V>(
       onInit: onInit,
       onInitialBuild: onInitialBuild,
-      onWillChange: (V viewModel) => onWillChange(context, viewModel),
+      onWillChange: (V previousViewModel, V newViewModel) =>
+          onWillChange(context, previousViewModel, newViewModel),
       onDidChange: (V viewModel) => onDidChange(context, viewModel),
       onDispose: onDispose,
       converter: (Store<State> store) => initViewModel()..init(store),
