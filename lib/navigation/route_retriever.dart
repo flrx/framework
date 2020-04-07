@@ -2,7 +2,7 @@ import 'package:flrx/pages/page_not_found.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart';
 
-// TODO(ibrahim-mubarak): Simplify getRoutes Methods
+@Deprecated("Use Modules instead")
 abstract class RouteRetriever {
   Map<String, Handler> getCommonRoutes() {
     return <String, Handler>{"/": getRootHandler()};
