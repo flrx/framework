@@ -6,13 +6,17 @@ import 'package:flrx/components/registrar/service_locator.dart';
 class Application {
   static final ServiceLocator serviceLocator = ServiceLocator();
 
-  static void init(void Function() initApp, {List<Module> modules = const []}) {
-    registerModules(modules);
+  static Future<void> init(
+    void Function() initApp, {
+    @Deprecated('Use modules instead')
+        void Function(ServiceLocator) setupSingletons,
+    List<Module> modules = const [],
+  }) async {
+    if (setupSingletons != null) {
+      setupSingletons(serviceLocator);
+    }
+    await Future.wait(modules.map((module) => module.initialize()));
     ErrorHandler.init(reporter: get<ErrorReporter>()).runApp(initApp);
-  }
-
-  static void registerModules(List<Module> modules) {
-    modules.forEach((module) => module.initialize());
   }
 
   static T get<T>() => serviceLocator.get<T>();

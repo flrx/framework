@@ -13,10 +13,10 @@ abstract class Module {
   Map<String, WidgetRoute> routes();
 
   /// Function to register or provide classes
-  void onInit() {}
+  Future<void> onInit() async {}
 
-  void initialize() {
-    onInit();
+  Future<void> initialize() async {
+    await onInit();
 
     routes().forEach((String route, WidgetRoute widgetRoute) {
       if (shouldNamespaceRoutes) {
