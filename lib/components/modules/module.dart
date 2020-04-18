@@ -20,7 +20,11 @@ abstract class Module {
 
     routes().forEach((String route, WidgetRoute widgetRoute) {
       if (!route.startsWith("/")) {
-        throw ArgumentError.value(route, "Route", "Should begin with '/' in module $name");
+        throw ArgumentError.value(
+          route,
+          "Route",
+          "Should begin with '/' in module $name",
+        );
       }
 
       if (shouldNamespaceRoutes) {
