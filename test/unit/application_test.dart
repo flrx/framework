@@ -7,10 +7,7 @@ import '../mocks/mock_module.dart';
 
 void main() {
   test("That Application can initalize Modules", () {
-
-    Application.init(() {}, modules: [
-      MockModule()
-    ]);
+    Application.init(() {}, modules: [MockModule()]);
 
     ErrorReporter reporter = Application.get<ErrorReporter>();
     expect(reporter is MockErrorReporter, true);
