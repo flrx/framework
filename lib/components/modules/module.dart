@@ -30,7 +30,7 @@ abstract class Module {
       if (shouldNamespaceRoutes) {
         route = "$name$route";
       }
-      AppRouter.registerRoutes(route, widgetRoute);
+      AppRouter.registerRoute(route, widgetRoute);
     });
   }
 }

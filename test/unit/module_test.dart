@@ -31,8 +31,9 @@ void main() {
     await module.initialize();
 
     expect(module.shouldNamespaceRoutes, false);
-    expect(router.match("/").route.handler != null, true);
-    expect(router.match("/mock").route.handler != null, true);
+
+    expect(routeHandlerForPath(router, "/") != null, true);
+    expect(routeHandlerForPath(router, "/mock") != null, true);
   });
 
   test("That modules can register route that are namespaced", () async {
@@ -44,17 +45,15 @@ void main() {
 
     expect(module.shouldNamespaceRoutes, true);
 
-    Handler handlerForPath(path) => router.match(path)?.route?.handler;
+    expect(routeHandlerForPath(router, "mock/") != null, true); // 2
+//    expect(handlerForPath(router,"mock") != null, true); // 2
+    expect(routeHandlerForPath(router, "/mock/") != null, true); // 1
+//    expect(handlerForPath(router,"/mock") != null, true);// 1
 
-    expect(handlerForPath("mock/") != null, true); // 2
-//    expect(handlerForPath("mock") != null, true); // 2
-    expect(handlerForPath("/mock/") != null, true); // 1
-//    expect(handlerForPath("/mock") != null, true);// 1
-
-//    expect(handlerForPath("/mock/mock/") != null, true);
-    expect(handlerForPath("/mock/mock") != null, true);
-    expect(handlerForPath("mock/mock") != null, true);
-//    expect(handlerForPath("mock/mock/") != null, true);
+//    expect(handlerForPath(router,"/mock/mock/") != null, true);
+    expect(routeHandlerForPath(router, "/mock/mock") != null, true);
+    expect(routeHandlerForPath(router, "mock/mock") != null, true);
+//    expect(handlerForPath(router,"mock/mock/") != null, true);
 
     // /mock/
     // /mock/mock
@@ -70,3 +69,5 @@ void main() {
     }
   });
 }
+
+Handler routeHandlerForPath(router, path) => router.match(path)?.route?.handler;

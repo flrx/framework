@@ -1,5 +1,7 @@
 import 'package:flrx/flrx.dart';
+import 'package:flrx/navigation/widget_route.dart';
 import 'package:fluro/fluro.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:test/test.dart';
 
 import '../mocks/mock_route_retriever.dart';
@@ -23,6 +25,22 @@ void main() {
     test('unavailable_test', () {
       AppRouteMatch match = AppRouter.router.match("/unknown");
       expect(match, null);
+    });
+  });
+
+  group("Not Found Handler", () {
+    setUp(() => AppRouter.router = Router());
+
+    test("That a not found handler can be Set", () {
+      Router router = AppRouter.router;
+      Container container = Container();
+
+      expect(router.notFoundHandler, null);
+
+      AppRouter.setNotFoundWidget(WidgetRoute((args) => container));
+
+      expect(router.notFoundHandler != null, true);
+      expect(router.notFoundHandler.handlerFunc(null, null), container);
     });
   });
 }
