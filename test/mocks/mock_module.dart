@@ -1,6 +1,6 @@
 import 'package:flrx/components/error/error.dart';
 import 'package:flrx/components/modules/module.dart';
-import 'package:flrx/navigation/widget_route.dart';
+import 'package:flrx/navigation/router.dart';
 import 'package:flutter/material.dart';
 
 import 'mock_error_reporter.dart';
@@ -14,8 +14,8 @@ class MockModuleWithInvalidRoutes extends MockModule {
   @override
   Map<String, WidgetRoute> routes() {
     return {
-      "/": WidgetRoute((args) => Container()),
-      "invalid-route": WidgetRoute((args) => Scaffold()),
+      "/": (args) => Container(),
+      "invalid-route": (args) => Scaffold(),
     };
   }
 }
@@ -30,8 +30,8 @@ class MockModule extends Module {
   @override
   Map<String, WidgetRoute> routes() {
     return {
-      "/": WidgetRoute((args) => Container()),
-      "/mock": WidgetRoute((args) => Scaffold()),
+      "/": (args) => Container(),
+      "/mock": (args) => Scaffold(),
     };
   }
 

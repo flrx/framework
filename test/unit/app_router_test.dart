@@ -1,5 +1,4 @@
 import 'package:flrx/flrx.dart';
-import 'package:flrx/navigation/widget_route.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:test/test.dart';
@@ -37,7 +36,7 @@ void main() {
 
       expect(router.notFoundHandler, null);
 
-      AppRouter.setNotFoundWidget(WidgetRoute((args) => container));
+      AppRouter.setNotFoundWidget((args) => container);
 
       expect(router.notFoundHandler != null, true);
       expect(router.notFoundHandler.handlerFunc(null, null), container);

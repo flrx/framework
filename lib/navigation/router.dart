@@ -1,6 +1,6 @@
 import 'package:flrx/navigation/route_retriever.dart';
-import 'package:flrx/navigation/widget_route.dart';
 import 'package:fluro/fluro.dart';
+import 'package:flutter/widgets.dart';
 
 class AppRouter {
   static Router router = Router();
@@ -30,6 +30,7 @@ class AppRouter {
     }
   }
 
+  /// Sets a default [WidgetRoute] when no route matches. Similar to a 404 Page.
   static void setNotFoundWidget(WidgetRoute widgetRoute) =>
       _registerNotFoundHandler(widgetRoute: widgetRoute);
 
@@ -38,6 +39,8 @@ class AppRouter {
   }
 
   static Handler _handlerForWidgetRoute(WidgetRoute widgetRoute) {
-    return Handler(handlerFunc: (context, args) => widgetRoute.builder(args));
+    return Handler(handlerFunc: (context, args) => widgetRoute(args));
   }
 }
+
+typedef WidgetRoute = Widget Function(Map<String, List<String>> params);

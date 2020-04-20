@@ -6,6 +6,8 @@ import 'package:flrx/components/registrar/service_locator.dart';
 class Application {
   static final ServiceLocator serviceLocator = ServiceLocator();
 
+  /// The entry point into the framework. Takes an [initApp] function which will
+  /// be called after framework is initialized and a List of [Module]s
   static Future<void> init(
     void Function() initApp, {
     @Deprecated('Use modules instead')
