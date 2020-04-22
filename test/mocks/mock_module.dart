@@ -12,7 +12,7 @@ class MockModuleWithNamespacedRoute extends MockModule {
 
 class MockModuleWithInvalidRoutes extends MockModule {
   @override
-  Map<String, WidgetRoute> routes() {
+  Map<String, RouteWidgetBuilder> routes() {
     return {
       "/": (args) => Container(),
       "invalid-route": (args) => Scaffold(),
@@ -28,7 +28,7 @@ class MockModule extends Module {
   bool get shouldNamespaceRoutes => false;
 
   @override
-  Map<String, WidgetRoute> routes() {
+  Map<String, RouteWidgetBuilder> routes() {
     return {
       "/": (args) => Container(),
       "/mock": (args) => Scaffold(),

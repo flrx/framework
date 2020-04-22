@@ -20,27 +20,27 @@ class AppRouter {
 
   static void _registerNotFoundHandler({
     RouteRetriever retriever,
-    WidgetRoute widgetRoute,
+    RouteWidgetBuilder builder,
   }) {
     Handler notFoundHandler =
-        _handlerForWidgetRoute(widgetRoute) ?? retriever?.getNotFoundHandler();
+        _handlerForWidgetRoute(builder) ?? retriever?.getNotFoundHandler();
 
     if (notFoundHandler != null) {
       router.notFoundHandler = notFoundHandler;
     }
   }
 
-  /// Sets a default [WidgetRoute] when no route matches. Similar to a 404 Page.
-  static void setNotFoundWidget(WidgetRoute widgetRoute) =>
-      _registerNotFoundHandler(widgetRoute: widgetRoute);
+  /// Sets a default [RouteWidgetBuilder] when no route matches. Similar to a 404 Page.
+  static void setNotFoundWidget(RouteWidgetBuilder builder) =>
+      _registerNotFoundHandler(builder: builder);
 
-  static void registerRoute(String route, WidgetRoute widgetRoute) {
-    router.define(route, handler: _handlerForWidgetRoute(widgetRoute));
+  static void registerRoute(String route, RouteWidgetBuilder builder) {
+    router.define(route, handler: _handlerForWidgetRoute(builder));
   }
 
-  static Handler _handlerForWidgetRoute(WidgetRoute widgetRoute) {
-    return Handler(handlerFunc: (context, args) => widgetRoute(args));
+  static Handler _handlerForWidgetRoute(RouteWidgetBuilder builder) {
+    return Handler(handlerFunc: (context, args) => builder(args));
   }
 }
 
-typedef WidgetRoute = Widget Function(Map<String, List<String>> params);
+typedef RouteWidgetBuilder = Widget Function(Map<String, List<String>> params);

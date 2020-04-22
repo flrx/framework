@@ -17,8 +17,8 @@ abstract class Module {
   ServiceLocator get locator => Application.serviceLocator;
 
   /// A method returning a list of routes to be registered by the [Module],
-  /// [WidgetRoute] provides the arguments by the navigator to the Widget.
-  Map<String, WidgetRoute> routes();
+  /// [RouteWidgetBuilder] provides the arguments by the navigator to the Widget.
+  Map<String, RouteWidgetBuilder> routes();
 
   Module() {
     throwIf(
@@ -39,13 +39,13 @@ abstract class Module {
   }
 
   void _registerRoutes() {
-    routes().forEach((String route, WidgetRoute widgetRoute) {
+    routes().forEach((String route, RouteWidgetBuilder builder) {
       _validateRouteName(route);
 
       if (shouldNamespaceRoutes) {
         route = "$name$route";
       }
-      AppRouter.registerRoute(route, widgetRoute);
+      AppRouter.registerRoute(route, builder);
     });
   }
 
