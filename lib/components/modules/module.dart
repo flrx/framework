@@ -16,7 +16,7 @@ abstract class Module {
   /// [ServiceLocator] from [Application], provided here for convenience.
   ServiceLocator get locator => Application.serviceLocator;
 
-  /// A method returning a list of routes to be registered by the [Module],
+  /// A method returning routes to be registered by the [Module],
   /// [RouteWidgetBuilder] provides the arguments by the navigator to the Widget.
   Map<String, RouteWidgetBuilder> routes();
 
