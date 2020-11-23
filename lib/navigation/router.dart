@@ -19,9 +19,7 @@ class AppRouter {
       _registerNotFoundHandler(builder: builder);
 
   static void registerRoute(String route, RouteWidgetBuilder builder) {
-    router.define(route,
-        handler: _handlerForWidgetRoute(builder),
-        transitionType: TransitionType.custom);
+    router.define(route, handler: _handlerForWidgetRoute(builder));
   }
 
   static Handler _handlerForWidgetRoute(RouteWidgetBuilder builder) {
