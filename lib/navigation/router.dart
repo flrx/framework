@@ -1,8 +1,8 @@
-import 'package:fluro/fluro.dart' as Fluro;
+import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart';
 
 class AppRouter {
-  static Fluro.Router router = Fluro.Router();
+  static FluroRouter router = FluroRouter();
 
   static void _registerNotFoundHandler({
     RouteWidgetBuilder builder,
@@ -19,11 +19,13 @@ class AppRouter {
       _registerNotFoundHandler(builder: builder);
 
   static void registerRoute(String route, RouteWidgetBuilder builder) {
-    router.define(route, handler: _handlerForWidgetRoute(builder), transitionType: Fluro.TransitionType.custom);
+    router.define(route,
+        handler: _handlerForWidgetRoute(builder),
+        transitionType: TransitionType.custom);
   }
 
-  static Fluro.Handler _handlerForWidgetRoute(RouteWidgetBuilder builder) {
-    return Fluro.Handler(handlerFunc: (context, args) => builder(args));
+  static Handler _handlerForWidgetRoute(RouteWidgetBuilder builder) {
+    return Handler(handlerFunc: (context, args) => builder(args));
   }
 }
 
