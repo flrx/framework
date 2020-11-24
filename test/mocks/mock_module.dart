@@ -40,7 +40,7 @@ class MockModule extends Module {
   }
 
   @override
-  Future<void> register() {
+  Future<void> register() async {
     locator.registerSingleton<ErrorReporter>(MockErrorReporter());
   }
 }

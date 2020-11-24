@@ -12,8 +12,13 @@ class Application {
     void Function() initApp, {
     List<Module> modules = const [],
   }) async {
+
+    // Wait for all modules to initialize
     await Future.wait(modules.map((module) => module.initialize()));
+
+    // Wait for all modules to boot
     await Future.wait(modules.map((module) => module.boot()));
+
     ErrorHandler.init(reporter: get<ErrorReporter>()).runApp(initApp);
   }
 

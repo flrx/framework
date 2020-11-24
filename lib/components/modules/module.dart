@@ -2,6 +2,7 @@ import 'package:flrx/application.dart';
 import 'package:flrx/components/registrar/service_locator.dart';
 import 'package:flrx/flrx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:meta/meta.dart';
 
 abstract class Module {
   /// Name of the [Module]. This [name] will be used as namespace when prefixing
@@ -30,15 +31,16 @@ abstract class Module {
 
   /// Function to register or provide classes. Override [register] when you want
   /// to write the logic for the initialization of the [Module].
-  Future<void> register();
+  Future<void> register() async {}
 
   Future<void> boot() async {}
 
   @Deprecated('Use register instead')
-  Future<void> onInit() async {}
+  @mustCallSuper
+  Future<void> onInit() => register();
 
   Future<void> initialize() async {
-    await register();
+    await onInit();
 
     _registerRoutes();
   }
