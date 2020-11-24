@@ -24,16 +24,21 @@ abstract class Module {
     throwIf(
       shouldNamespaceRoutes && name == null,
       StateError(
-          "Module name cannot be null when shouldNamespaceRoutes is true"),
+          'Module name cannot be null when shouldNamespaceRoutes is true'),
     );
   }
 
-  /// Function to register or provide classes. Override [onInit] when you want
+  /// Function to register or provide classes. Override [register] when you want
   /// to write the logic for the initialization of the [Module].
+  Future<void> register();
+
+  Future<void> boot() async {}
+
+  @Deprecated('Use register instead')
   Future<void> onInit() async {}
 
   Future<void> initialize() async {
-    await onInit();
+    await register();
 
     _registerRoutes();
   }

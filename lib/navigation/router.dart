@@ -1,5 +1,5 @@
 import 'package:fluro/fluro.dart';
-import 'package:flutter/widgets.dart';
+import 'package:flutter/widgets.dart' hide Router;
 
 class AppRouter {
   static FluroRouter router = FluroRouter();

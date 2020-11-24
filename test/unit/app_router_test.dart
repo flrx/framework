@@ -1,7 +1,7 @@
 import 'package:flrx/components/modules/module.dart';
 import 'package:flrx/flrx.dart';
 import 'package:fluro/fluro.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart' hide Router;
 import 'package:test/test.dart';
 
 import '../mocks/mock_module.dart';

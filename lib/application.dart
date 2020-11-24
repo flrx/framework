@@ -10,14 +10,10 @@ class Application {
   /// be called after framework is initialized and a List of [Module]s
   static Future<void> init(
     void Function() initApp, {
-    @Deprecated('Use modules instead')
-        void Function(ServiceLocator) setupSingletons,
     List<Module> modules = const [],
   }) async {
-    if (setupSingletons != null) {
-      setupSingletons(serviceLocator);
-    }
     await Future.wait(modules.map((module) => module.initialize()));
+    await Future.wait(modules.map((module) => module.boot()));
     ErrorHandler.init(reporter: get<ErrorReporter>()).runApp(initApp);
   }
 
