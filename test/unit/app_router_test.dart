@@ -16,8 +16,7 @@ void main() {
     });
 
     test('module_test', () {
-      var match =
-          AppRouter.router.match(TestModule.MOCK_CUSTOMER_HOME);
+      var match = AppRouter.router.match(TestModule.MOCK_CUSTOMER_HOME);
       expect(match.route.route, TestModule.MOCK_CUSTOMER_HOME);
     });
 
