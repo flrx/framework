@@ -4,20 +4,16 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:test/test.dart';
 
-import '../mocks/mock_route_retriever.dart';
+import '../mocks/mock_module.dart';
 
 void main() {
   group('AppRouter init test', () {
-    Module retriever = TestModule();
-    retriever.routes().forEach(AppRouter.registerRoute);
-    test('common_test', () {
-      var match = AppRouter.router.match(TestModule.MOCK_LOGIN);
-      expect(match.route.route, TestModule.MOCK_LOGIN);
-    });
+    Module module = MockModule();
+    module.routes().forEach(AppRouter.registerRoute);
 
     test('module_test', () {
-      var match = AppRouter.router.match(TestModule.MOCK_CUSTOMER_HOME);
-      expect(match.route.route, TestModule.MOCK_CUSTOMER_HOME);
+      var match = AppRouter.router.match(MockModule.HOME);
+      expect(match.route.route, MockModule.HOME);
     });
 
     test('unavailable_test', () {
