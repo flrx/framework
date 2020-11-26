@@ -1,29 +1,13 @@
-import 'package:flrx/navigation/route_retriever.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter/widgets.dart';
 
 class AppRouter {
-  static Router router = Router();
-
-  @Deprecated("Modules will auto register the routes")
-  static void init([RouteRetriever retriever]) {
-    _registerRouteRetriever(retriever);
-  }
-
-  static void _registerRouteRetriever(RouteRetriever retriever) {
-    _registerNotFoundHandler(retriever: retriever);
-
-    retriever?.getRoutes()?.forEach((String route, Handler handler) {
-      router.define(route, handler: handler);
-    });
-  }
+  static FluroRouter router = FluroRouter();
 
   static void _registerNotFoundHandler({
-    RouteRetriever retriever,
     RouteWidgetBuilder builder,
   }) {
-    Handler notFoundHandler =
-        _handlerForWidgetRoute(builder) ?? retriever?.getNotFoundHandler();
+    var notFoundHandler = _handlerForWidgetRoute(builder);
 
     if (notFoundHandler != null) {
       router.notFoundHandler = notFoundHandler;
