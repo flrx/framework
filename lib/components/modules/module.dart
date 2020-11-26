@@ -46,10 +46,6 @@ abstract class Module {
   Future<void> initialize() async {
     await onInit();
 
-    _registerRoutes();
-  }
-
-  void _registerRoutes() {
     routes().forEach(registerRoute);
   }
 
