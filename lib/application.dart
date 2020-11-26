@@ -12,14 +12,17 @@ class Application {
     void Function() initApp, {
     List<Module> modules = const [],
   }) async {
+    await registerModules(modules);
 
+    ErrorHandler.init(reporter: get<ErrorReporter>()).runApp(initApp);
+  }
+
+  static Future registerModules(List<Module> modules) async {
     // Wait for all modules to initialize
     await Future.wait(modules.map((module) => module.initialize()));
 
     // Wait for all modules to boot
     await Future.wait(modules.map((module) => module.boot()));
-
-    ErrorHandler.init(reporter: get<ErrorReporter>()).runApp(initApp);
   }
 
   static T get<T>() => serviceLocator.get<T>();

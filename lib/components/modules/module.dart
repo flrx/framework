@@ -29,10 +29,14 @@ abstract class Module {
     );
   }
 
-  /// Function to register or provide classes. Override [register] when you want
-  /// to write the logic for the initialization of the [Module].
+  /// Within the [register] method, you should only bind things into the service
+  /// locator. You should never attempt to register any event listeners, routes,
+  /// or any other piece of functionality within the register method.
   Future<void> register() async {}
 
+  /// This method is called after all other [Module]s have been registered,
+  /// meaning you have access to all other services that have been registered
+  /// by the framework
   Future<void> boot() async {}
 
   @Deprecated('Use register instead')
@@ -46,19 +50,25 @@ abstract class Module {
   }
 
   void _registerRoutes() {
-    routes().forEach((String route, RouteWidgetBuilder builder) {
-      _validateRouteName(route);
-
-      if (shouldNamespaceRoutes) {
-        route = "$name$route";
-      }
-      AppRouter.registerRoute(route, builder);
-    });
+    routes().forEach(registerRoute);
   }
 
-  void _validateRouteName(String route) => throwIf(
-        !route.startsWith("/"),
-        ArgumentError.value(
-            route, "Route", "Should begin with '/' in module $name"),
-      );
+  /// Register routes from the current [Module]
+  /// This can be used to conditionally register routes from the [boot] method.
+  void registerRoute(String route, RouteWidgetBuilder builder) {
+    _validateRouteName(route);
+
+    if (shouldNamespaceRoutes) {
+      route = '$name$route';
+    }
+    AppRouter.registerRoute(route, builder);
+  }
+
+  void _validateRouteName(String route) {
+    throwIf(
+      !route.startsWith('/'),
+      ArgumentError.value(
+          route, 'Route', "Should begin with '/' in module $name"),
+    );
+  }
 }
