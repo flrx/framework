@@ -1,19 +1,30 @@
-import 'package:flrx/navigation/route_retriever.dart';
-import 'package:flrx/utils/string_utils.dart';
 import 'package:fluro/fluro.dart';
+import 'package:flutter/widgets.dart';
 
 class AppRouter {
-  static Router router;
+  static FluroRouter router = FluroRouter();
 
-  static void init(RouteRetriever retriever) {
-    router = Router();
-    router.notFoundHandler = retriever.getNotFoundHandler();
-    retriever.getRoutes().forEach((String route, Handler handler) {
-      router.define(route, handler: handler);
-    });
+  static void _registerNotFoundHandler({
+    RouteWidgetBuilder builder,
+  }) {
+    var notFoundHandler = _handlerForWidgetRoute(builder);
+
+    if (notFoundHandler != null) {
+      router.notFoundHandler = notFoundHandler;
+    }
   }
 
-  @Deprecated('Use StringUtils.replaceWithValues() instead')
-  static String generateParamRoute(String route, Map<String, String> params) =>
-      StringUtils.replaceWithValues(route, params);
+  /// Sets a default [RouteWidgetBuilder] when no route matches. Similar to a 404 Page.
+  static void setNotFoundWidget(RouteWidgetBuilder builder) =>
+      _registerNotFoundHandler(builder: builder);
+
+  static void registerRoute(String route, RouteWidgetBuilder builder) {
+    router.define(route, handler: _handlerForWidgetRoute(builder));
+  }
+
+  static Handler _handlerForWidgetRoute(RouteWidgetBuilder builder) {
+    return Handler(handlerFunc: (context, args) => builder(args));
+  }
 }
+
+typedef RouteWidgetBuilder = Widget Function(Map<String, List<String>> params);

@@ -1,28 +1,40 @@
+import 'package:flrx/components/modules/module.dart';
 import 'package:flrx/flrx.dart';
 import 'package:fluro/fluro.dart';
-import 'package:test_api/test_api.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:test/test.dart';
 
-import '../mocks/mock_route_retriever.dart';
+import '../mocks/mock_module.dart';
 
 void main() {
   group('AppRouter init test', () {
-    RouteRetriever retriever = MockRouteRetriever();
-    AppRouter.init(retriever);
-    test('common_test', () {
-      AppRouteMatch match =
-          AppRouter.router.match(MockRouteRetriever.MOCK_LOGIN);
-      expect(match.route.route, MockRouteRetriever.MOCK_LOGIN);
-    });
+    Module module = MockModule();
+    module.routes().forEach(AppRouter.registerRoute);
 
     test('module_test', () {
-      AppRouteMatch match =
-          AppRouter.router.match(MockRouteRetriever.MOCK_CUSTOMER_HOME);
-      expect(match.route.route, MockRouteRetriever.MOCK_CUSTOMER_HOME);
+      var match = AppRouter.router.match(MockModule.HOME);
+      expect(match.route.route, MockModule.HOME);
     });
 
     test('unavailable_test', () {
-      AppRouteMatch match = AppRouter.router.match("/unknown");
+      var match = AppRouter.router.match('/unknown');
       expect(match, null);
+    });
+  });
+
+  group('Not Found Handler', () {
+    setUp(() => AppRouter.router = FluroRouter());
+
+    test('That a not found handler can be Set', () {
+      var router = AppRouter.router;
+      var container = Container();
+
+      expect(router.notFoundHandler, null);
+
+      AppRouter.setNotFoundWidget((args) => container);
+
+      expect(router.notFoundHandler != null, true);
+      expect(router.notFoundHandler.handlerFunc(null, null), container);
     });
   });
 }

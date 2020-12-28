@@ -3,7 +3,7 @@ import 'package:flrx/components/error/error_handler.dart';
 import 'package:flrx/components/logger/logger.dart';
 import 'package:flutter/foundation.dart';
 import 'package:mockito/mockito.dart';
-import 'package:test_api/test_api.dart';
+import 'package:test/test.dart';
 
 import '../mocks/mock_error_reporter.dart';
 import '../mocks/mock_logger.dart';
@@ -15,7 +15,7 @@ void main() {
   Function exceptionBlock = () => throw testException;
   Function flutterErrorBlock = () => throw flutterError;
   MockLogger logger = MockLogger();
-  Application.registrar.registerSingleton<Logger>(logger);
+  Application.serviceLocator.registerSingleton<Logger>(logger);
 
   group("error_reporter", () {
     setUp(() {

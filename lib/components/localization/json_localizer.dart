@@ -14,9 +14,18 @@ class JsonLocalizer extends Localizer {
   final bool useCountryCode;
 
   @override
-  String translate(final BuildContext context, final String key,
-          {final Map<String, String> translationParams}) =>
-      FlutterI18n.translate(context, key, translationParams);
+  String translate(
+    final BuildContext context,
+    final String key, {
+    final String fallbackKey,
+    final Map<String, String> translationParams,
+  }) =>
+      FlutterI18n.translate(
+        context,
+        key,
+        translationParams: translationParams,
+        fallbackKey: fallbackKey,
+      );
 
   @override
   String plural(final BuildContext context, final String key,
@@ -30,7 +39,10 @@ class JsonLocalizer extends Localizer {
   @override
   LocalizationsDelegate<Object> getLocalizationDelegate() =>
       FlutterI18nDelegate(
+        translationLoader: FileTranslationLoader(
           fallbackFile: fallbackFile,
-          path: path,
-          useCountryCode: useCountryCode);
+          basePath: path,
+          useCountryCode: useCountryCode,
+        ),
+      );
 }
