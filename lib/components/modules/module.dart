@@ -2,6 +2,7 @@ import 'package:flrx/application.dart';
 import 'package:flrx/components/registrar/service_locator.dart';
 import 'package:flrx/flrx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:meta/meta.dart';
 
 abstract class Module {
   /// Name of the [Module]. This [name] will be used as namespace when prefixing
@@ -24,34 +25,46 @@ abstract class Module {
     throwIf(
       shouldNamespaceRoutes && name == null,
       StateError(
-          "Module name cannot be null when shouldNamespaceRoutes is true"),
+          'Module name cannot be null when shouldNamespaceRoutes is true'),
     );
   }
 
-  /// Function to register or provide classes. Override [onInit] when you want
-  /// to write the logic for the initialization of the [Module].
-  Future<void> onInit() async {}
+  /// Within the [register] method, you should only bind things into the service
+  /// locator. You should never attempt to register any event listeners, routes,
+  /// or any other piece of functionality within the register method.
+  Future<void> register() async {}
+
+  /// This method is called after all other [Module]s have been registered,
+  /// meaning you have access to all other services that have been registered
+  /// by the framework
+  Future<void> boot() async {}
+
+  @Deprecated('Use register instead')
+  @mustCallSuper
+  Future<void> onInit() => register();
 
   Future<void> initialize() async {
     await onInit();
 
-    _registerRoutes();
+    routes().forEach(registerRoute);
   }
 
-  void _registerRoutes() {
-    routes().forEach((String route, RouteWidgetBuilder builder) {
-      _validateRouteName(route);
+  /// Register routes from the current [Module]
+  /// This can be used to conditionally register routes from the [boot] method.
+  void registerRoute(String route, RouteWidgetBuilder builder) {
+    _validateRouteName(route);
 
-      if (shouldNamespaceRoutes) {
-        route = "$name$route";
-      }
-      AppRouter.registerRoute(route, builder);
-    });
+    if (shouldNamespaceRoutes) {
+      route = '$name$route';
+    }
+    AppRouter.registerRoute(route, builder);
   }
 
-  void _validateRouteName(String route) => throwIf(
-        !route.startsWith("/"),
-        ArgumentError.value(
-            route, "Route", "Should begin with '/' in module $name"),
-      );
+  void _validateRouteName(String route) {
+    throwIf(
+      !route.startsWith('/'),
+      ArgumentError.value(
+          route, 'Route', "Should begin with '/' in module $name"),
+    );
+  }
 }
