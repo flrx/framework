@@ -54,10 +54,18 @@ abstract class Module {
   void registerRoute(String route, RouteWidgetBuilder builder) {
     _validateRouteName(route);
 
+    AppRouter.registerRoute(normalizeRoute(route), builder);
+  }
+
+  String normalizeRoute(String route) {
     if (shouldNamespaceRoutes) {
-      route = '$name$route';
+      if (route == '/') {
+        route = '';
+      }
+
+      route = '/$name$route';
     }
-    AppRouter.registerRoute(route, builder);
+    return route;
   }
 
   void _validateRouteName(String route) {
