@@ -45,10 +45,8 @@ void main() {
     await module.initialize();
 
     expect(module.shouldNamespaceRoutes, true);
-    expect(routeHandlerForPath(router, 'mock/') != null, true);
-    expect(routeHandlerForPath(router, '/mock/') != null, true);
+    expect(routeHandlerForPath(router, '/mock') != null, true);
     expect(routeHandlerForPath(router, '/mock/mock') != null, true);
-    expect(routeHandlerForPath(router, 'mock/mock') != null, true);
   });
 
   test('That modules can register route that are namespaced', () async {
