@@ -13,13 +13,13 @@ class FlavoredApp extends StatelessWidget {
   Widget build(BuildContext context) {
     if (showBanner && Config.isInDebugMode) {
       return Directionality(
+        textDirection: TextDirection.ltr,
         child: Banner(
-          key: Key("banner"),
-          child: child,
+          key: Key('banner'),
           location: BannerLocation.topStart,
           message: FlavorConfig.name,
+          child: child,
         ),
-        textDirection: TextDirection.ltr,
       );
     }
     return child;

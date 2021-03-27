@@ -9,15 +9,15 @@ import '../mocks/mock_error_reporter.dart';
 import '../mocks/mock_logger.dart';
 
 void main() {
-  MockErrorReporter reporter = MockErrorReporter();
-  Exception testException = Exception("Test Exception");
-  FlutterError flutterError = FlutterError("Test Flutter Error");
+  var reporter = MockErrorReporter();
+  var testException = Exception('Test Exception');
+  var flutterError = FlutterError('Test Flutter Error');
   Function exceptionBlock = () => throw testException;
   Function flutterErrorBlock = () => throw flutterError;
-  MockLogger logger = MockLogger();
+  var logger = MockLogger();
   Application.serviceLocator.registerSingleton<Logger>(logger);
 
-  group("error_reporter", () {
+  group('error_reporter', () {
     setUp(() {
       reporter = MockErrorReporter();
       reset(reporter);

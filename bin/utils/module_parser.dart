@@ -5,14 +5,14 @@ mixin ModuleParser {
 
   String get moduleName => argResults['module']?.toLowerCase();
 
-  String get modulePath => moduleName == null ? '' : "/modules/$moduleName";
+  String get modulePath => moduleName == null ? '' : '/modules/$moduleName';
 
   void addModuleOption(ArgParser argParser,String name) {
     argParser
-      ..addOption(
-        "module",
+      .addOption(
+        'module',
         abbr: 'm',
-        help: "Create $name in specific module (optional)",
+        help: 'Create $name in specific module (optional)',
       );
   }
 }

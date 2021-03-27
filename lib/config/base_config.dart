@@ -3,7 +3,7 @@ import 'package:flrx/flrx.dart';
 
 abstract class Config {
   static bool get isInDebugMode {
-    bool inDebugMode = false;
+    var inDebugMode = false;
     assert(inDebugMode = true);
     return inDebugMode;
   }
@@ -16,6 +16,6 @@ abstract class Config {
     return FlavorConfig.instance.configList.firstWhere(
         (Config config) => config is T,
         orElse: () =>
-            throw Exception("Config $T is not registered in ConfigList"));
+            throw Exception('Config $T is not registered in ConfigList'));
   }
 }

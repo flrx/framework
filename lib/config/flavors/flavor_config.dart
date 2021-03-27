@@ -12,10 +12,10 @@ class FlavorConfig {
 
   FlavorConfig._internal(this.flavor, List<Config> configList) {
     this.configList = configList.map((Config config) {
-      Config flavoredConfig = config.of(flavor);
+      var flavoredConfig = config.of(flavor);
       if (flavoredConfig == null) {
         throw ConfigNotImplementedError(
-            configType: this.runtimeType.toString(), flavor: flavor);
+            configType: runtimeType.toString(), flavor: flavor);
       }
       return flavoredConfig;
     }).toList();

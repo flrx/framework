@@ -10,13 +10,13 @@ ArgResults results;
 
 void main(List<String> arguments) async {
   exitCode = 0;
-  List<Command> registerCommands = <Command>[
+  var registerCommands = <Command>[
     MakePageCommand(),
     MakeRuleCommand(),
   ];
-  CommandRunner runner = CommandRunner(
-    "flrx",
-    "flrx: An Opinionated Flutter Redux Framework",
+  var runner = CommandRunner(
+    'flrx',
+    'flrx: An Opinionated Flutter Redux Framework',
   );
   registerCommands.forEach(runner.addCommand);
   await runner.run(arguments);

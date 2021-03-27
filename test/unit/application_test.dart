@@ -6,10 +6,10 @@ import '../mocks/mock_error_reporter.dart';
 import '../mocks/mock_module.dart';
 
 void main() {
-  test("That Application can initalize Modules", () {
+  test('That Application can initialize Modules', () {
     Application.init(() {}, modules: [MockModule()]);
 
-    ErrorReporter reporter = Application.get<ErrorReporter>();
+    var reporter = Application.get<ErrorReporter>();
     expect(reporter is MockErrorReporter, true);
   });
 }

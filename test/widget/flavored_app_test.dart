@@ -4,24 +4,24 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   testWidgets('flavored_app_shows_banner', (WidgetTester tester) async {
-    String flavorName = "test flavor";
+    var flavorName = 'test flavor';
     FlavorConfig(flavor: Flavor(flavorName), configList: <Config>[]);
     await tester.pumpWidget(FlavoredApp(
-      child: Container(),
       showBanner: true,
+      child: Container(),
     ));
-    Finder bannerFinder = find.byType(Banner);
+    var bannerFinder = find.byType(Banner);
     expect(bannerFinder, findsOneWidget);
   });
 
   testWidgets('flavored_app_shows_no_banner', (WidgetTester tester) async {
-    String flavorName = "test flavor";
+    var flavorName = 'test flavor';
     FlavorConfig(flavor: Flavor(flavorName), configList: <Config>[]);
     await tester.pumpWidget(FlavoredApp(
-      child: Container(),
       showBanner: false,
+      child: Container(),
     ));
-    Finder bannerFinder = find.byType(Banner);
+    var bannerFinder = find.byType(Banner);
     expect(bannerFinder, findsNothing);
   });
 }

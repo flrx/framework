@@ -5,8 +5,8 @@ import 'package:yaml/yaml.dart';
 
 class ApplicationUtils {
   static Future<String> getName() async {
-    File pubspecYamlFile = File('pubspec.yaml');
-    String pubspecYamlStr = await pubspecYamlFile.readAsString();
+    var pubspecYamlFile = File('pubspec.yaml');
+    var pubspecYamlStr = await pubspecYamlFile.readAsString();
     YamlMap pubspecYaml = loadYaml(pubspecYamlStr);
     return pubspecYaml['name'];
   }

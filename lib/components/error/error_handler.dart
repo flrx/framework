@@ -42,11 +42,8 @@ class ErrorHandler {
     };
   }
 
-  void runApp(Function appFunction) {
-    runZoned<Future<void>>(() async {
-      appFunction();
-    }, onError: reportError);
-  }
+  void runApp(Function appFunction) =>
+      runZonedGuarded<Future<void>>(appFunction, reportError);
 
   void reportError(dynamic error, StackTrace stackTrace) async {
     if (Config.isInDebugMode && !reportErrorOnDebug) {

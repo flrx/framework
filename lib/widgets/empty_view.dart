@@ -74,12 +74,12 @@ class EmptyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Widget illustrationWidget = illustration ??
+    var illustrationWidget = illustration ??
         _buildIllustration(emptyViewMessage?.illustrationPath,
             emptyViewMessage?.illustrationSize);
-    Widget descriptionWidget =
+    var descriptionWidget =
         description ?? _buildDescription(emptyViewMessage?.description);
-    Widget actionWidget = action ??
+    var actionWidget = action ??
         _buildAction(emptyViewMessage?.actionTitle, emptyViewMessage?.onAction);
 
     return Column(
@@ -115,10 +115,9 @@ class EmptyView extends StatelessWidget {
     if (actionTitle == null || onAction == null) {
       return null;
     }
-    return RaisedButton(
-      elevation: 1,
-      child: Text(actionTitle ?? 'Retry'),
+    return ElevatedButton(
       onPressed: onAction,
+      child: Text(actionTitle ?? 'Retry'),
     );
   }
 }

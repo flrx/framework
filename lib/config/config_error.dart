@@ -9,5 +9,5 @@ class ConfigNotImplementedError extends UnimplementedError {
 
   @override
   String toString() =>
-      "ConfigNotImplementedError: $configType Has not been implemented for $flavor";
+      'ConfigNotImplementedError: $configType Has not been implemented for $flavor';
 }

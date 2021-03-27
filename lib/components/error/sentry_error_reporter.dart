@@ -14,7 +14,7 @@ class SentryErrorReporter with ErrorReporter {
   @override
   void reportError(dynamic error, StackTrace stackTrace) async {
     log('Reporting to Sentry.io...');
-    final SentryResponse response = await _sentry.captureException(
+    final response = await _sentry.captureException(
       exception: error,
       stackTrace: stackTrace,
     );

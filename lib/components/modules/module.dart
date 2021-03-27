@@ -2,7 +2,6 @@ import 'package:flrx/application.dart';
 import 'package:flrx/components/registrar/service_locator.dart';
 import 'package:flrx/flrx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:meta/meta.dart';
 
 abstract class Module {
   /// Name of the [Module]. This [name] will be used as namespace when prefixing
@@ -39,12 +38,8 @@ abstract class Module {
   /// by the framework
   Future<void> boot() async {}
 
-  @Deprecated('Use register instead')
-  @mustCallSuper
-  Future<void> onInit() => register();
-
   Future<void> initialize() async {
-    await onInit();
+    await register();
 
     routes().forEach(registerRoute);
   }

@@ -26,7 +26,7 @@ class MockAppState {
   }
 
   factory MockAppState.initialState() {
-    return MockAppState("");
+    return MockAppState('');
   }
 
   String mockData;
