@@ -42,7 +42,7 @@ class ErrorHandler {
     };
   }
 
-  void runApp(Function appFunction) =>
+  void runApp(Future<void> Function() appFunction) =>
       runZonedGuarded<Future<void>>(appFunction, reportError);
 
   void reportError(dynamic error, StackTrace stackTrace) async {

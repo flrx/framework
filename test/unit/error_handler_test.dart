@@ -21,7 +21,7 @@ void main() {
   });
 
   test('error_handler_run_app', () async {
-    handler.runApp(() => logger.log('Test Message'));
+    handler.runApp(() async => logger.log('Test Message'));
     await untilCalled(logger.log(captureAny));
     verify(logger.log('Test Message')).called(1);
   });
