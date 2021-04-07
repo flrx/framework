@@ -13,9 +13,9 @@ abstract class Config {
   Config of(Flavor flavor);
 
   static T get<T extends Config>() {
-    return FlavorConfig.instance.configList.firstWhere(
+    return FlavorConfig.instance!.configList.firstWhere(
         (Config config) => config is T,
-        orElse: () =>
-            throw Exception('Config $T is not registered in ConfigList'));
+        orElse: (() =>
+            throw Exception('Config $T is not registered in ConfigList'))) as T;
   }
 }

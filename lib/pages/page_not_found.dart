@@ -6,6 +6,6 @@ class PageNotFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     log('Route not found');
-    return null;
+    throw Exception('Route not found');
   }
 }

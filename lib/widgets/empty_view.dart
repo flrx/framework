@@ -12,36 +12,36 @@ class EmptyView extends StatelessWidget {
   /// It takes [description], [illustration] and [action] widgets
   /// and a [reversed] `boolean` variable. This allows full
   /// flexibility and customisability for building the widget.
-  const EmptyView(
-      {@required this.description,
-      this.illustration,
-      this.action,
-      this.reversed = false,
-      Key key})
-      : emptyViewMessage = null,
-        super(key: key);
+  const EmptyView({
+    required this.description,
+    this.illustration,
+    this.action,
+    this.reversed = false,
+    Key? key,
+  }) : super(key: key);
 
   /// The named [EmptyView] constructor taking [emptyViewMessage]
   /// and [reversed] as arguments.
-  const EmptyView.fromEmptyViewMessage(
-      {@required this.emptyViewMessage, this.reversed = false, Key key})
-      : illustration = null,
-        description = null,
-        action = null,
-        super(key: key);
-
-  /// A config for building the widget.
-  ///
-  /// This is passed to the [EmptyView.fromEmptyViewMessage] named
-  /// constructor.
-  final EmptyViewMessage emptyViewMessage;
+  factory EmptyView.fromEmptyViewMessage({
+    required EmptyViewMessage emptyViewMessage,
+    bool reversed = false,
+    Key? key,
+  }) {
+    return EmptyView(
+      illustration: _buildIllustration(emptyViewMessage),
+      description: Text(emptyViewMessage.description),
+      action: _buildAction(emptyViewMessage),
+      reversed: reversed,
+      key: key,
+    );
+  }
 
   /// A widget depicting an image to show when the view is rendered.
   ///
   /// If `null`, it will not be rendered on the scrren.
   ///
   /// Used with default constructor.
-  final Widget illustration;
+  final Widget? illustration;
 
   /// A widget depicting the reason or description for the [EmptyView]
   /// to be shown.
@@ -59,7 +59,7 @@ class EmptyView extends StatelessWidget {
   /// If `null`, it will not be rendered on the scrren.
   ///
   /// Used with default constructor.
-  final Widget action;
+  final Widget? action;
 
   /// A `bool` variable depicting the order of rendering the widgets
   /// passed to [EmptyView].
@@ -74,47 +74,44 @@ class EmptyView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var illustrationWidget = illustration ??
-        _buildIllustration(emptyViewMessage?.illustrationPath,
-            emptyViewMessage?.illustrationSize);
-    var descriptionWidget =
-        description ?? _buildDescription(emptyViewMessage?.description);
-    var actionWidget = action ??
-        _buildAction(emptyViewMessage?.actionTitle, emptyViewMessage?.onAction);
-
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: <Widget>[
-        if (!reversed) illustrationWidget,
-        descriptionWidget,
-        if (reversed) illustrationWidget,
-        actionWidget,
-      ],
-    );
+    return Column(mainAxisSize: MainAxisSize.min, children: <Widget>[
+      ...getReversibleWidgets(),
+      action ?? Container(),
+    ]);
   }
 
-  Widget _buildIllustration(String illustrationPath, Size size) {
-    if (illustrationPath == null) {
+  List<Widget> getReversibleWidgets() {
+    var illustrationWidget = illustration ?? Container();
+    var list = [illustrationWidget, description];
+
+    if (reversed) {
+      return list.reversed.toList();
+    }
+
+    return list;
+  }
+
+  static Widget? _buildIllustration(EmptyViewMessage emptyViewMessage) {
+    var path = emptyViewMessage.illustrationPath;
+    if (path == null) {
       return null;
     }
+    var size = emptyViewMessage.illustrationSize;
     return Image(
-      height: size.height,
+      height: size!.height,
       width: size.width,
-      image: AssetImage(illustrationPath),
+      image: AssetImage(path),
     );
   }
 
-  Widget _buildDescription(String description) {
-    if (description == null) {
-      return null;
-    }
-    return Text(description);
-  }
+  static Widget? _buildAction(EmptyViewMessage emptyViewMessage) {
+    var actionTitle = emptyViewMessage.actionTitle;
+    var onAction = emptyViewMessage.onAction;
 
-  Widget _buildAction(String actionTitle, Function onAction) {
-    if (actionTitle == null || onAction == null) {
+    if (onAction == null) {
       return null;
     }
+
     return ElevatedButton(
       onPressed: onAction,
       child: Text(actionTitle ?? 'Retry'),

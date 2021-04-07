@@ -43,7 +43,7 @@ abstract class Page<State, V extends ViewModel<State>> {
   /// TabController, etc
   void onWillChange(
     BuildContext context,
-    V previousViewModel,
+    V? previousViewModel,
     V newViewModel,
   ) {}
 
@@ -56,12 +56,12 @@ abstract class Page<State, V extends ViewModel<State>> {
     return StoreConnector<State, V>(
       onInit: onInit,
       onInitialBuild: onInitialBuild,
-      onWillChange: (V previousViewModel, V newViewModel) => onWillChange(
+      onWillChange: (V? previousViewModel, V newViewModel) => onWillChange(
         context,
         previousViewModel,
         newViewModel,
       ),
-      onDidChange: (V previousViewModel, V newViewModel) => onDidChange(
+      onDidChange: (V? previousViewModel, V newViewModel) => onDidChange(
         context,
         previousViewModel,
         newViewModel,
@@ -86,7 +86,7 @@ abstract class Page<State, V extends ViewModel<State>> {
   /// Note: For navigation purposes, please use [onWillChange].
   void onDidChange(
     BuildContext context,
-    V previousViewModel,
+    V? previousViewModel,
     V newViewModel,
   ) {}
 

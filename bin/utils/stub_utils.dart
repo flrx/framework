@@ -1,14 +1,13 @@
 import 'dart:io';
 
-import 'package:meta/meta.dart';
-
 import 'application_utils.dart';
 
 class StubUtils {
-  static void generateFileFromStub(
-      {@required String stubPath,
-      @required String destPath,
-      @required Map<String, String> stubReplacements}) {
+  static void generateFileFromStub({
+    required String stubPath,
+    required String destPath,
+    required Map<String, String> stubReplacements,
+  }) {
     createDirectory(File('$destPath.dart').parent.path);
     var sourceDirectory = ApplicationUtils.getScriptDirectory();
 

@@ -20,14 +20,6 @@ abstract class Module {
   /// [RouteWidgetBuilder] provides the arguments by the navigator to the Widget.
   Map<String, RouteWidgetBuilder> routes();
 
-  Module() {
-    throwIf(
-      shouldNamespaceRoutes && name == null,
-      StateError(
-          'Module name cannot be null when shouldNamespaceRoutes is true'),
-    );
-  }
-
   /// Within the [register] method, you should only bind things into the service
   /// locator. You should never attempt to register any event listeners, routes,
   /// or any other piece of functionality within the register method.

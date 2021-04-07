@@ -1,12 +1,9 @@
 import 'dart:io';
 
-import 'package:args/args.dart';
 import 'package:args/command_runner.dart';
 
 import 'commands/make_page.dart';
 import 'commands/make_rule.dart';
-
-ArgResults results;
 
 void main(List<String> arguments) async {
   exitCode = 0;

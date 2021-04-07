@@ -39,7 +39,7 @@ void main() {
       expect(() {
         var route = '/provider/:$paramName';
         return StringUtils.replaceWithValues(
-            route, <String, String>{paramName: null});
+            route, <String, String?>{paramName: null});
       }, throwsA(predicate((Error e) {
         return e is ArgumentError &&
             e.message == 'Value cannot be null. $paramName is passed as null';

@@ -23,15 +23,15 @@ class MakePageCommand extends Command with ModuleParser {
     );
   }
 
-  String get pageName => argResults.rest.single;
+  String get pageName => argResults!.rest.single;
 
   String get viewModelName => '${pageName}VM';
 
   String get stateName =>
-      argResults['state'] ??
+      argResults!['state'] ??
       (moduleName == null
           ? 'AppState'
-          : '${ReCase(moduleName).pascalCase}AppState');
+          : '${ReCase(moduleName!).pascalCase}AppState');
 
   String get path =>
       moduleName == null ? 'lib/pages/' : 'lib/$modulePath/pages/';
@@ -50,7 +50,7 @@ class MakePageCommand extends Command with ModuleParser {
         stubPath: '/stubs/pages/stateless_page',
         destPath: path + pageFileName,
         stubReplacements: <String, String>{
-          'SRC_PATH': (await ApplicationUtils.getName()) + modulePath,
+          'SRC_PATH': (await ApplicationUtils.getName())+ modulePath,
           'VIEWMODEL_FILENAME': '${ReCase(pageName).snakeCase}_vm',
           'VIEWMODEL_NAME': viewModelName,
           'PAGE_NAME': pageName,
@@ -66,7 +66,7 @@ class MakePageCommand extends Command with ModuleParser {
         stubPath: '/stubs/pages/viewmodels/stateless_page_vm',
         destPath: viewModelPath,
         stubReplacements: <String, String>{
-          'SRC_PATH': (await ApplicationUtils.getName()) + modulePath,
+          'SRC_PATH': (await ApplicationUtils.getName())+ modulePath,
           'VIEWMODEL_NAME': viewModelName,
           'STATE_FILENAME': ReCase(stateName).snakeCase,
           'STATE': stateName,

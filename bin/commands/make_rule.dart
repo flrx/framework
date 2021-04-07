@@ -17,7 +17,7 @@ class MakeRuleCommand extends Command with ModuleParser {
     addModuleOption(argParser, 'rule');
   }
 
-  String get ruleName => argResults.rest.single;
+  String get ruleName => argResults!.rest.single;
 
   String get path => moduleName == null
       ? 'lib/validator/rules/'

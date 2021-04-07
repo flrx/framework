@@ -6,8 +6,7 @@ import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import '../mocks/mock_error_reporter.dart';
-import '../mocks/mock_logger.dart';
+import '../mocks.mocks.dart';
 import '../mocks/mock_module.dart';
 
 void main() {
@@ -79,4 +78,4 @@ void main() {
   });
 }
 
-Handler routeHandlerForPath(router, path) => router.match(path)?.route?.handler;
+Handler? routeHandlerForPath(router, path) => router.match(path)?.route?.handler;

@@ -1,14 +1,20 @@
+import 'package:flrx/application.dart';
 import 'package:flrx/components/error/error.dart';
+import 'package:flrx/components/logger/base_logger.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import '../mocks/mock_error_reporter.dart';
-import '../mocks/mock_logger.dart';
+import '../mocks.mocks.dart';
 
 void main() {
   var logger = MockLogger();
   var errorReporter = MockErrorReporter();
-  ErrorHandler handler;
+  late ErrorHandler handler;
+
+  setUpAll(() {
+    Application.serviceLocator.registerSingleton<Logger>(logger);
+  });
+
   setUp(() {
     handler = ErrorHandler.init(reporter: errorReporter);
   });
@@ -21,8 +27,7 @@ void main() {
   });
 
   test('error_handler_run_app', () async {
-    handler.runApp(() async => logger.log('Test Message'));
-    await untilCalled(logger.log(captureAny));
+    await handler.runApp(() async => logger.log('Test Message'));
     verify(logger.log('Test Message')).called(1);
   });
 }

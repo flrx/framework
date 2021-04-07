@@ -5,13 +5,9 @@ class AppRouter {
   static FluroRouter router = FluroRouter();
 
   static void _registerNotFoundHandler({
-    RouteWidgetBuilder builder,
+    required RouteWidgetBuilder builder,
   }) {
-    var notFoundHandler = _handlerForWidgetRoute(builder);
-
-    if (notFoundHandler != null) {
-      router.notFoundHandler = notFoundHandler;
-    }
+    router.notFoundHandler = _createHandlerFromRouteWidgetBuilder(builder);
   }
 
   /// Sets a default [RouteWidgetBuilder] when no route matches. Similar to a 404 Page.
@@ -19,10 +15,12 @@ class AppRouter {
       _registerNotFoundHandler(builder: builder);
 
   static void registerRoute(String route, RouteWidgetBuilder builder) {
-    router.define(route, handler: _handlerForWidgetRoute(builder));
+    router.define(route,
+        handler: _createHandlerFromRouteWidgetBuilder(builder));
   }
 
-  static Handler _handlerForWidgetRoute(RouteWidgetBuilder builder) {
+  static Handler _createHandlerFromRouteWidgetBuilder(
+      RouteWidgetBuilder builder) {
     return Handler(handlerFunc: (context, args) => builder(args));
   }
 }
