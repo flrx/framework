@@ -13,7 +13,7 @@ void main() {
 
     test('module_test', () {
       var match = AppRouter.router.match(MockModule.HOME);
-      expect(match.route.route, MockModule.HOME);
+      expect(match?.route.route, MockModule.HOME);
     });
 
     test('unavailable_test', () {
@@ -34,7 +34,7 @@ void main() {
       AppRouter.setNotFoundWidget((args) => container);
 
       expect(router.notFoundHandler != null, true);
-      expect(router.notFoundHandler.handlerFunc(null, null), container);
+      expect(router.notFoundHandler!.handlerFunc(null, {}), container);
     });
   });
 }

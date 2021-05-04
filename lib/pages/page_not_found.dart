@@ -5,7 +5,7 @@ import 'package:flutter/widgets.dart';
 class PageNotFound extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    log("Route not found");
-    return null;
+    log('Route not found');
+    throw Exception('Route not found');
   }
 }

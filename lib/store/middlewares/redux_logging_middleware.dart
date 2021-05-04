@@ -4,7 +4,7 @@ import 'package:redux/redux.dart';
 import 'package:redux_logging/redux_logging.dart';
 
 Middleware<State> getReduxLoggingMiddleware<State>() {
-  LoggingMiddleware<State> loggingMiddleware = LoggingMiddleware<State>(
+  var loggingMiddleware = LoggingMiddleware<State>(
     formatter: LoggingMiddleware.multiLineFormatter,
   );
   loggingMiddleware.logger.onRecord.where((native_logger.LogRecord record) {

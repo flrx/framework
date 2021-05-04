@@ -21,15 +21,15 @@ class MockStoreRetriever extends StoreRetriever<MockAppState> {
 }
 
 class MockAppState {
-  MockAppState(String mockData) {
+  MockAppState(String? mockData) {
     this.mockData = mockData;
   }
 
   factory MockAppState.initialState() {
-    return MockAppState("");
+    return MockAppState('');
   }
 
-  String mockData;
+  String? mockData;
 
   static MockAppState fromJson(dynamic jsonData) {
     return MockAppState(json.decode(jsonData));

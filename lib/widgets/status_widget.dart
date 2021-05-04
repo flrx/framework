@@ -2,16 +2,17 @@ import 'package:flrx/models/enums/status.dart';
 import 'package:flutter/material.dart';
 
 class StatusWidget extends StatelessWidget {
-  StatusWidget(
-      {@required this.status,
-      @required this.onSuccess,
-      @required this.onFailed,
-      this.onInitial,
-      this.onFetching});
+  StatusWidget({
+    required this.status,
+    required this.onSuccess,
+    required this.onFailed,
+    this.onInitial,
+    this.onFetching = _defaultFetchWidget,
+  });
 
   final Status status;
 
-  final Widget onInitial;
+  final Widget? onInitial;
 
   final Widget onFetching;
 
@@ -23,9 +24,9 @@ class StatusWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (status) {
       case Status.INITIAL:
-        return onInitial ?? onFetching ?? _buildOnFetching();
+        return onInitial ?? onFetching;
       case Status.FETCHING:
-        return onFetching ?? _buildOnFetching();
+        return onFetching;
       case Status.SUCCESS:
         return onSuccess;
       case Status.FAILED:
@@ -35,7 +36,6 @@ class StatusWidget extends StatelessWidget {
     }
   }
 
-  Widget _buildOnFetching() {
-    return Center(child: CircularProgressIndicator());
-  }
+  static const Widget _defaultFetchWidget =
+      Center(child: CircularProgressIndicator());
 }

@@ -4,7 +4,7 @@ import 'package:flrx/flrx.dart';
 import 'package:flrx/navigation/router.dart';
 import 'package:flutter/material.dart';
 
-import 'mock_error_reporter.dart';
+import '../mocks.mocks.dart';
 
 class MockModuleWithNamespacedRoute extends MockModule {
   @override
@@ -17,24 +17,24 @@ class MockModule1 extends MockModule {
 
   @override
   Future<void> register() async {
-    Application.get<Logger>().log('Register Module 1');
+    locator.get<Logger>().log('Register Module 1');
   }
 
   @override
   Future<void> boot() async {
-    Application.get<Logger>().log('Boot Module 1');
+    locator.get<Logger>().log('Boot Module 1');
   }
 }
 
 class MockModule2 extends MockModule {
   @override
   Future<void> register() async {
-    Application.get<Logger>().log('Register Module 2');
+    locator.get<Logger>().log('Register Module 2');
   }
 
   @override
   Future<void> boot() async {
-    Application.get<Logger>().log('Boot Module 2');
+    locator.get<Logger>().log('Boot Module 2');
   }
 }
 
@@ -56,6 +56,8 @@ class MockModule extends Module {
   static const INVALID_ROUTE = 'invalid-route';
   static const MOCK = '/mock';
 
+  var reporter = MockErrorReporter();
+
   @override
   bool get shouldNamespaceRoutes => false;
 
@@ -69,6 +71,6 @@ class MockModule extends Module {
 
   @override
   Future<void> register() async {
-    locator.registerSingleton<ErrorReporter>(MockErrorReporter());
+    locator.registerSingleton<ErrorReporter>(reporter);
   }
 }

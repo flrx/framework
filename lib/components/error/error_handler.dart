@@ -6,14 +6,16 @@ import 'package:flrx/config/config.dart';
 import 'package:flutter/widgets.dart';
 
 class ErrorHandler {
-  //Create new Error Handler
-  factory ErrorHandler.init({@required ErrorReporter reporter}) {
-    _instance ??= ErrorHandler._internal(reporter);
-    return _instance;
+  // Create new Error Handler
+  factory ErrorHandler.init({
+    required ErrorReporter reporter,
+    bool reportErrorOnDebug = false,
+  }) {
+    _instance ??= ErrorHandler._internal(reporter, reportErrorOnDebug);
+    return _instance!;
   }
 
-  ErrorHandler._internal(this.reporter)
-      : reportErrorOnDebug = reporter.reportOnDebug ?? false {
+  ErrorHandler._internal(this.reporter, this.reportErrorOnDebug) {
     _setupFlutterErrorHandler();
   }
 
@@ -21,12 +23,12 @@ class ErrorHandler {
 
   final ErrorReporter reporter;
 
-  static ErrorHandler _instance;
+  static ErrorHandler? _instance;
 
   final bool reportErrorOnDebug;
 
   static ErrorHandler get instance {
-    return _instance;
+    return _instance!;
   }
 
   void _setupFlutterErrorHandler() {
@@ -37,16 +39,18 @@ class ErrorHandler {
         log(details);
       } else {
         // In production mode report to the application zone
-        Zone.current.handleUncaughtError(details.exception, details.stack);
+        Zone.current.handleUncaughtError(details.exception, details.stack!);
       }
     };
   }
 
-  void runApp(Function appFunction) {
-    runZoned<Future<void>>(() async {
-      appFunction();
-    }, onError: reportError);
-  }
+  FutureOr<void>? runApp(FutureOr<void> Function() appFunction) =>
+      runZonedGuarded<FutureOr<void>>(() {
+        // Required for Async Error Handling
+        WidgetsFlutterBinding.ensureInitialized();
+
+        return appFunction();
+      }, reportError);
 
   void reportError(dynamic error, StackTrace stackTrace) async {
     if (Config.isInDebugMode && !reportErrorOnDebug) {
@@ -55,6 +59,6 @@ class ErrorHandler {
       log('In dev mode. Not reporting Error');
       return;
     }
-    _instance.reporter.reportError(error, stackTrace);
+    _instance!.reporter.reportError(error, stackTrace);
   }
 }
