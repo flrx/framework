@@ -19,10 +19,10 @@ class Application {
 
   static Future registerModules(List<Module> modules) async {
     // Wait for all modules to initialize
-    await Future.wait(modules.map((module) => module.initialize()));
+    await Future.forEach<Module>(modules, (module) => module.initialize());
 
     // Wait for all modules to boot
-    await Future.wait(modules.map((module) => module.boot()));
+    await Future.forEach<Module>(modules, (module) => module.boot());
   }
 
   static T get<T extends Object>() => serviceLocator.get<T>();

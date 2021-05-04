@@ -44,8 +44,13 @@ class ErrorHandler {
     };
   }
 
-  Future<void>? runApp(Future<void> Function() appFunction) =>
-      runZonedGuarded<Future<void>>(appFunction, reportError);
+  FutureOr<void>? runApp(FutureOr<void> Function() appFunction) =>
+      runZonedGuarded<FutureOr<void>>(() {
+        // Required for Async Error Handling
+        WidgetsFlutterBinding.ensureInitialized();
+
+        return appFunction();
+      }, reportError);
 
   void reportError(dynamic error, StackTrace stackTrace) async {
     if (Config.isInDebugMode && !reportErrorOnDebug) {

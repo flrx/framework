@@ -2,7 +2,6 @@ import 'package:flrx/application.dart';
 import 'package:flrx/components/modules/module.dart';
 import 'package:flrx/flrx.dart';
 import 'package:fluro/fluro.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
@@ -10,8 +9,9 @@ import '../mocks.mocks.dart';
 import '../mocks/mock_module.dart';
 
 void main() {
-  setUp(() {
-    GetIt.instance.reset();
+
+  setUp(() async {
+    await Application.serviceLocator.reset();
     AppRouter.router = FluroRouter();
   });
 
