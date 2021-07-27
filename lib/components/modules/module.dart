@@ -23,7 +23,7 @@ abstract class Module {
 
   /// A method returning middlewares to be registered by the [Module],
   /// [RouteWidgetBuilder] provides the arguments by the navigator to the Widget.
-  List<Middleware> middlewares();
+  List<Middleware> middlewares() => [];
 
   /// Within the [register] method, you should only bind things into the service
   /// locator. You should never attempt to register any event listeners, routes,

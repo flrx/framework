@@ -12,15 +12,12 @@ abstract class StoreRetriever<State> {
     return Store<State>(
       getPrimaryReducer(),
       initialState: await getInitialState(),
-      middleware: _getModuleMiddlewares()..addAll(getMiddlewares()),
+      middleware: getMiddlewares(),
     );
   }
 
-  List<Middleware<State>> _getModuleMiddlewares() {
-    return Application.modules
-        .expand((element) => element.middlewares())
-        .toList();
-  }
-
-  List<Middleware<State>> getMiddlewares();
+  List<Middleware<State>> getMiddlewares() =>
+      Application.modules
+          .expand((element) => element.middlewares())
+          .toList();
 }
