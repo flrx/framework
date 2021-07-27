@@ -8,20 +8,20 @@ import '../utils/stub_utils.dart';
 
 class MakeRuleCommand extends Command with ModuleParser {
   @override
-  final String description = "Create a new Input Validation Rule";
+  final String description = 'Create a new Input Validation Rule';
 
   @override
-  final String name = "make:rule";
+  final String name = 'make:rule';
 
   MakeRuleCommand() {
     addModuleOption(argParser, 'rule');
   }
 
-  String get ruleName => argResults.rest.single;
+  String get ruleName => argResults!.rest.single;
 
   String get path => moduleName == null
       ? 'lib/validator/rules/'
-      : "lib/$modulePath/validator/rules/";
+      : 'lib/$modulePath/validator/rules/';
 
   @override
   FutureOr run() {
@@ -30,13 +30,13 @@ class MakeRuleCommand extends Command with ModuleParser {
   }
 
   void createRule() async {
-    String ruleFileName = ReCase(ruleName).snakeCase;
+    var ruleFileName = ReCase(ruleName).snakeCase;
 
     StubUtils.generateFileFromStub(
-        stubPath: "/stubs/validator/rule",
+        stubPath: '/stubs/validator/rule',
         destPath: path + ruleFileName,
         stubReplacements: <String, String>{
-          "RULE_NAME": ruleName,
+          'RULE_NAME': ruleName,
         });
   }
 }

@@ -4,10 +4,11 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 
 class JsonLocalizer extends Localizer {
-  JsonLocalizer(
-      {@required this.fallbackFile,
-      @required this.path,
-      @required this.useCountryCode});
+  JsonLocalizer({
+    required this.fallbackFile,
+    required this.path,
+    required this.useCountryCode,
+  });
 
   final String fallbackFile;
   final String path;
@@ -17,8 +18,8 @@ class JsonLocalizer extends Localizer {
   String translate(
     final BuildContext context,
     final String key, {
-    final String fallbackKey,
-    final Map<String, String> translationParams,
+    final String? fallbackKey,
+    final Map<String, String>? translationParams,
   }) =>
       FlutterI18n.translate(
         context,

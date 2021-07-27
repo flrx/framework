@@ -43,7 +43,7 @@ abstract class Page<State, V extends ViewModel<State>> {
   /// TabController, etc
   void onWillChange(
     BuildContext context,
-    V previousViewModel,
+    V? previousViewModel,
     V newViewModel,
   ) {}
 
@@ -56,9 +56,16 @@ abstract class Page<State, V extends ViewModel<State>> {
     return StoreConnector<State, V>(
       onInit: onInit,
       onInitialBuild: onInitialBuild,
-      onWillChange: (V previousViewModel, V newViewModel) =>
-          onWillChange(context, previousViewModel, newViewModel),
-      onDidChange: (V viewModel) => onDidChange(context, viewModel),
+      onWillChange: (V? previousViewModel, V newViewModel) => onWillChange(
+        context,
+        previousViewModel,
+        newViewModel,
+      ),
+      onDidChange: (V? previousViewModel, V newViewModel) => onDidChange(
+        context,
+        previousViewModel,
+        newViewModel,
+      ),
       onDispose: onDispose,
       converter: (Store<State> store) => initViewModel()..init(store),
       builder: buildContent,
@@ -77,7 +84,11 @@ abstract class Page<State, V extends ViewModel<State>> {
   /// complete.
   ///
   /// Note: For navigation purposes, please use [onWillChange].
-  void onDidChange(BuildContext context, V viewModel) {}
+  void onDidChange(
+    BuildContext context,
+    V? previousViewModel,
+    V newViewModel,
+  ) {}
 
   /// A function that will be run when the StoreConnector is removed from the
   /// Widget Tree.

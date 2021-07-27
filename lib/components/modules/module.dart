@@ -2,7 +2,6 @@ import 'package:flrx/application.dart';
 import 'package:flrx/components/registrar/service_locator.dart';
 import 'package:flrx/flrx.dart';
 import 'package:get_it/get_it.dart';
-import 'package:meta/meta.dart';
 
 abstract class Module {
   /// Name of the [Module]. This [name] will be used as namespace when prefixing
@@ -21,14 +20,6 @@ abstract class Module {
   /// [RouteWidgetBuilder] provides the arguments by the navigator to the Widget.
   Map<String, RouteWidgetBuilder> routes();
 
-  Module() {
-    throwIf(
-      shouldNamespaceRoutes && name == null,
-      StateError(
-          'Module name cannot be null when shouldNamespaceRoutes is true'),
-    );
-  }
-
   /// Within the [register] method, you should only bind things into the service
   /// locator. You should never attempt to register any event listeners, routes,
   /// or any other piece of functionality within the register method.
@@ -39,12 +30,8 @@ abstract class Module {
   /// by the framework
   Future<void> boot() async {}
 
-  @Deprecated('Use register instead')
-  @mustCallSuper
-  Future<void> onInit() => register();
-
   Future<void> initialize() async {
-    await onInit();
+    await register();
 
     routes().forEach(registerRoute);
   }

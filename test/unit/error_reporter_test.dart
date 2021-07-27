@@ -5,19 +5,18 @@ import 'package:flutter/foundation.dart';
 import 'package:mockito/mockito.dart';
 import 'package:test/test.dart';
 
-import '../mocks/mock_error_reporter.dart';
-import '../mocks/mock_logger.dart';
+import '../mocks.mocks.dart';
 
 void main() {
-  MockErrorReporter reporter = MockErrorReporter();
-  Exception testException = Exception("Test Exception");
-  FlutterError flutterError = FlutterError("Test Flutter Error");
-  Function exceptionBlock = () => throw testException;
-  Function flutterErrorBlock = () => throw flutterError;
-  MockLogger logger = MockLogger();
+  var reporter = MockErrorReporter();
+  var testException = Exception('Test Exception');
+  var flutterError = FlutterError('Test Flutter Error');
+  var exceptionBlock = () => throw testException;
+  var flutterErrorBlock = () => throw flutterError;
+  var logger = MockLogger();
   Application.serviceLocator.registerSingleton<Logger>(logger);
 
-  group("error_reporter", () {
+  group('error_reporter', () {
     setUp(() {
       reporter = MockErrorReporter();
       reset(reporter);
@@ -27,27 +26,24 @@ void main() {
     tearDown(ErrorHandler.dispose);
 
     test('test_catch_exception_debug_mode_reporting', () async {
-      reporter.reportOnDebug = true;
-      ErrorHandler.init(reporter: reporter).runApp(exceptionBlock);
-      await untilCalled(reporter.reportError(captureAny, captureAny));
-      verify(reporter.reportError(testException, captureAny)).called(1);
+      await ErrorHandler.init(reporter: reporter, reportErrorOnDebug: true)
+          .runApp(exceptionBlock);
+      verify(reporter.reportError(testException, any)).called(1);
       verifyZeroInteractions(logger);
     });
 
     /// This is not a reliable test
     test('test_catch_exception_disabled_debug_mode_reporting', () async {
-      reporter.reportOnDebug = false;
-      ErrorHandler.init(reporter: reporter).runApp(exceptionBlock);
-      await untilCalled(logger.log(captureAny));
-      verify(logger.log(captureAny)).called(greaterThanOrEqualTo(1));
+      await ErrorHandler.init(reporter: reporter).runApp(exceptionBlock);
+      await untilCalled(logger.log(any));
+      verify(logger.log(any)).called(greaterThanOrEqualTo(1));
       verifyZeroInteractions(reporter);
     });
 
     test('test_catch_flutter_error_debug_mode_reporting', () async {
-      reporter.reportOnDebug = true;
-      ErrorHandler.init(reporter: reporter).runApp(flutterErrorBlock);
-      await untilCalled(reporter.reportError(captureAny, captureAny));
-      verify(reporter.reportError(flutterError, captureAny)).called(1);
+      await ErrorHandler.init(reporter: reporter, reportErrorOnDebug: true)
+          .runApp(flutterErrorBlock);
+      verify(reporter.reportError(flutterError, any)).called(1);
       verifyZeroInteractions(logger);
     });
   });
