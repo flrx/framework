@@ -2,6 +2,7 @@ import 'package:flrx/application.dart';
 import 'package:flrx/components/registrar/service_locator.dart';
 import 'package:flrx/flrx.dart';
 import 'package:get_it/get_it.dart';
+import 'package:redux/redux.dart';
 
 abstract class Module {
   /// Name of the [Module]. This [name] will be used as namespace when prefixing
@@ -19,6 +20,10 @@ abstract class Module {
   /// A method returning routes to be registered by the [Module],
   /// [RouteWidgetBuilder] provides the arguments by the navigator to the Widget.
   Map<String, RouteWidgetBuilder> routes();
+
+  /// A method returning middlewares to be registered by the [Module],
+  /// [RouteWidgetBuilder] provides the arguments by the navigator to the Widget.
+  List<Middleware> middlewares();
 
   /// Within the [register] method, you should only bind things into the service
   /// locator. You should never attempt to register any event listeners, routes,
