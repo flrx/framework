@@ -14,4 +14,4 @@ export 'navigation/router.dart';
 export 'pages/page.dart';
 export 'pages/viewmodel.dart';
 export 'store/store_retriever.dart';
-export 'widgets/flavor_app.dart';
+

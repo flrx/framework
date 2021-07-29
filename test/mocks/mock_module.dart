@@ -1,10 +1,7 @@
-import 'package:flrx/components/error/error.dart';
 import 'package:flrx/components/modules/module.dart';
 import 'package:flrx/flrx.dart';
 import 'package:flrx/navigation/router.dart';
 import 'package:flutter/material.dart';
-
-import '../mocks.mocks.dart';
 
 class MockModuleWithNamespacedRoute extends MockModule {
   @override
@@ -56,8 +53,6 @@ class MockModule extends Module {
   static const INVALID_ROUTE = 'invalid-route';
   static const MOCK = '/mock';
 
-  var reporter = MockErrorReporter();
-
   @override
   bool get shouldNamespaceRoutes => false;
 
@@ -71,6 +66,8 @@ class MockModule extends Module {
 
   @override
   Future<void> register() async {
-    locator.registerSingleton<ErrorReporter>(reporter);
+    locator.registerSingleton<RandomClass>(RandomClass());
   }
 }
+
+class RandomClass {}
