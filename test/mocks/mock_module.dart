@@ -14,24 +14,24 @@ class MockModule1 extends MockModule {
 
   @override
   Future<void> register() async {
-    locator.get<Logger>().log('Register Module 1');
+    log('Register Module 1');
   }
 
   @override
   Future<void> boot() async {
-    locator.get<Logger>().log('Boot Module 1');
+    log('Boot Module 1');
   }
 }
 
 class MockModule2 extends MockModule {
   @override
   Future<void> register() async {
-    locator.get<Logger>().log('Register Module 2');
+    log('Register Module 2');
   }
 
   @override
   Future<void> boot() async {
-    locator.get<Logger>().log('Boot Module 2');
+    log('Boot Module 2');
   }
 }
 

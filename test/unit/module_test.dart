@@ -3,6 +3,7 @@ import 'package:flrx/components/modules/module.dart';
 import 'package:flrx/flrx.dart';
 import 'package:fluro/fluro.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:logger/logger.dart' as log;
 import 'package:mockito/mockito.dart';
 
 import '../mocks.mocks.dart';
@@ -76,10 +77,10 @@ void main() {
     );
 
     verifyInOrder([
-      mockLogger.log('Register Module 1'),
-      mockLogger.log('Register Module 2'),
-      mockLogger.log('Boot Module 1'),
-      mockLogger.log('Boot Module 2'),
+      mockLogger.log(log.Level.info, 'Register Module 1'),
+      mockLogger.log(log.Level.info, 'Register Module 2'),
+      mockLogger.log(log.Level.info, 'Boot Module 1'),
+      mockLogger.log(log.Level.info, 'Boot Module 2'),
     ]);
   });
 }

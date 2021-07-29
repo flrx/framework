@@ -1,7 +1,9 @@
 import 'package:flrx/application.dart';
+import 'package:logger/logger.dart' as logging;
 
-abstract class Logger {
-  void log(dynamic message);
-}
+class Logger extends logging.Logger {}
 
-void log(dynamic message) => Application.get<Logger>().log(message);
+void log(dynamic message) => Application.get<Logger>().log(
+      logging.Level.info,
+      message,
+    );
