@@ -67,4 +67,11 @@ class Application {
   static T get<T extends Object>() => serviceLocator.get<T>();
 
   static ApplicationConfig get config => _config;
+
+  static bool hasModuleWithName(String name) {
+    return modules.cast().firstWhere((element) {
+          return element.name == name;
+        }, orElse: () => null) !=
+        null;
+  }
 }

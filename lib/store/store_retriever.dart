@@ -1,8 +1,9 @@
 import 'package:flrx/application.dart';
+import 'package:flrx/store/state.dart';
 import 'package:redux/redux.dart';
 
 // TODO(ibrahim-mubarak): Should be more configurable
-abstract class StoreRetriever<State> {
+abstract class StoreRetriever<State extends FlrxState> {
   Reducer<State> getPrimaryReducer();
 
   Future<State> getInitialState();
