@@ -2,13 +2,16 @@ import 'package:flrx/application.dart';
 import 'package:flrx/components/modules/module.dart';
 import 'package:flrx/flrx.dart';
 import 'package:fluro/fluro.dart';
+import 'package:flutter_test/flutter_test.dart';
+import 'package:logger/logger.dart' as log;
 import 'package:mockito/mockito.dart';
-import 'package:test/test.dart';
 
 import '../mocks.mocks.dart';
+import '../mocks/mock_config.dart';
 import '../mocks/mock_module.dart';
 
 void main() {
+  TestWidgetsFlutterBinding.ensureInitialized();
 
   setUp(() async {
     await Application.serviceLocator.reset();
@@ -20,8 +23,8 @@ void main() {
 
     await module.initialize();
 
-    var reporter = Application.get<ErrorReporter>();
-    expect(reporter is MockErrorReporter, true);
+    var instance = Application.get<RandomClass>();
+    expect(instance is RandomClass, true);
   });
 
   test('That modules can register routes', () async {
@@ -62,20 +65,25 @@ void main() {
 
   test('Modules are registered and booted in proper order', () async {
     var mockLogger = MockLogger();
+
     Application.serviceLocator.registerSingleton<Logger>(mockLogger);
 
-    await Application.registerModules([
-      MockModule1(),
-      MockModule2(),
-    ]);
+    await Application.init(
+      () async {},
+      config: MockConfig([
+        MockModule1(),
+        MockModule2(),
+      ]),
+    );
 
     verifyInOrder([
-      mockLogger.log('Register Module 1'),
-      mockLogger.log('Register Module 2'),
-      mockLogger.log('Boot Module 1'),
-      mockLogger.log('Boot Module 2'),
+      mockLogger.log(log.Level.info, 'Register Module 1'),
+      mockLogger.log(log.Level.info, 'Register Module 2'),
+      mockLogger.log(log.Level.info, 'Boot Module 1'),
+      mockLogger.log(log.Level.info, 'Boot Module 2'),
     ]);
   });
 }
 
-Handler? routeHandlerForPath(router, path) => router.match(path)?.route?.handler;
+Handler? routeHandlerForPath(router, path) =>
+    router.match(path)?.route?.handler;

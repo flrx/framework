@@ -1,29 +1,70 @@
-import 'package:flrx/components/error/error_handler.dart';
-import 'package:flrx/components/error/error_reporter.dart';
+import 'package:catcher/catcher.dart';
 import 'package:flrx/components/modules/module.dart';
 import 'package:flrx/components/registrar/service_locator.dart';
+import 'package:flrx/config/application_config.dart';
+import 'package:flutter/widgets.dart';
 
 class Application {
   static final ServiceLocator serviceLocator = ServiceLocator();
+
+  static late final ApplicationConfig _config;
+
+  static bool get isInDebugMode {
+    var inDebugMode = false;
+    assert(inDebugMode = true);
+    return inDebugMode;
+  }
 
   /// The entry point into the framework. Takes an [initApp] function which will
   /// be called after framework is initialized and a List of [Module]s
   static Future<void> init(
     Future<void> Function() initApp, {
-    List<Module> modules = const [],
+    required ApplicationConfig config,
   }) async {
-    await registerModules(modules);
+    Application._config = config;
 
-    return ErrorHandler.init(reporter: get<ErrorReporter>()).runApp(initApp);
+    await registerModules();
+
+    setupErrorManagement(config, initApp);
   }
 
-  static Future registerModules(List<Module> modules) async {
+  static void setupErrorManagement(
+    ApplicationConfig config,
+    Function() initApp,
+  ) {
+    var errorReporterConfig = config.errorReporterConfig;
+
+    if (errorReporterConfig.defaultErrorWidgetBuilder != null) {
+      ErrorWidget.builder = errorReporterConfig.defaultErrorWidgetBuilder!;
+    }
+
+    var catcher = Catcher(
+      runAppFunction: initApp,
+      debugConfig: errorReporterConfig.catcherDebugOptions(),
+      profileConfig: errorReporterConfig.catcherProfileOptions(),
+      releaseConfig: errorReporterConfig.catcherReleaseOptions(),
+      enableLogger: errorReporterConfig.isLoggingEnabled(),
+      navigatorKey: config.navigatorKey,
+    );
+
+    Application.serviceLocator.registerSingleton<Catcher>(catcher);
+  }
+
+  static Future registerModules() async {
     // Wait for all modules to initialize
-    await Future.forEach<Module>(modules, (module) => module.initialize());
+    await Future.forEach<Module>(
+      _config.modules,
+      (module) => module.initialize(),
+    );
 
     // Wait for all modules to boot
-    await Future.forEach<Module>(modules, (module) => module.boot());
+    await Future.forEach<Module>(
+      _config.modules,
+      (module) => module.boot(),
+    );
   }
 
   static T get<T extends Object>() => serviceLocator.get<T>();
+
+  static ApplicationConfig get config => _config;
 }

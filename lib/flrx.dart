@@ -6,7 +6,6 @@
 library flrx;
 
 export 'application.dart';
-export 'components/error/error.dart';
 export 'components/localization/localization.dart';
 export 'components/logger/logger.dart';
 export 'config/config.dart';
@@ -14,4 +13,3 @@ export 'navigation/router.dart';
 export 'pages/page.dart';
 export 'pages/viewmodel.dart';
 export 'store/store_retriever.dart';
-export 'widgets/flavor_app.dart';

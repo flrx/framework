@@ -1,3 +1,2 @@
-export 'base_config.dart';
-export 'flavors/flavor.dart';
-export 'flavors/flavor_config.dart';
+export 'application_config.dart';
+export 'error_reporter_config.dart';
