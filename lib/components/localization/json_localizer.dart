@@ -4,7 +4,7 @@ import 'package:flutter_i18n/flutter_i18n.dart';
 import 'package:flutter_i18n/flutter_i18n_delegate.dart';
 
 class JsonLocalizer extends Localizer {
-  JsonLocalizer({
+  const JsonLocalizer({
     required this.fallbackFile,
     required this.path,
     required this.useCountryCode,

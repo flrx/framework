@@ -2,6 +2,8 @@ import 'package:flrx/application.dart';
 import 'package:flutter/widgets.dart';
 
 abstract class Localizer {
+  const Localizer();
+
   String translate(
     final BuildContext context,
     final String key, {

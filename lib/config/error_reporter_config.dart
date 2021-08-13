@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
 
 class ErrorReporterConfig {
+  const ErrorReporterConfig();
+
   CatcherOptions catcherDebugOptions() {
     return CatcherOptions.getDefaultDebugOptions();
   }

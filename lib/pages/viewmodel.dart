@@ -1,7 +1,7 @@
 import 'package:redux/redux.dart';
 
 abstract class ViewModel<State> {
-  ViewModel();
+  const ViewModel();
 
   void init(Store<State> store);
 }

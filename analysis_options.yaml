@@ -22,3 +22,9 @@ linter:
     - unnecessary_null_aware_assignments
     - unnecessary_overrides
     - unnecessary_statements
+    -  annotate_overrides
+    - prefer_const_constructors
+    - prefer_const_constructors_in_immutables
+    - prefer_collection_literals
+    - prefer_conditional_assignment
+    - prefer_contains

@@ -2,7 +2,7 @@ import 'package:flrx/models/enums/status.dart';
 import 'package:flutter/material.dart';
 
 class StatusWidget extends StatelessWidget {
-  StatusWidget({
+  const StatusWidget({
     required this.status,
     required this.onSuccess,
     required this.onFailed,

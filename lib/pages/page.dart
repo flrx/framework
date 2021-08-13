@@ -16,6 +16,9 @@ import 'package:redux/redux.dart';
 /// a [ViewModel] defined for the widget using this mixin.
 ///
 abstract class Page<State, V extends ViewModel<State>> {
+
+  const Page();
+
   /// A function that will run when the [StoreConnector] in [Page] will
   /// initially be created.
   ///

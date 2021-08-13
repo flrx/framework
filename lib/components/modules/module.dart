@@ -4,6 +4,9 @@ import 'package:flrx/flrx.dart';
 import 'package:get_it/get_it.dart';
 
 abstract class Module {
+
+  const Module();
+
   /// Name of the [Module]. This [name] will be used as namespace when prefixing
   /// it to the route.
   String get name;
