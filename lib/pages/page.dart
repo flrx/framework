@@ -17,8 +17,6 @@ import 'package:redux/redux.dart';
 ///
 abstract class Page<State, V extends ViewModel<State>> {
 
-  const Page();
-
   /// A function that will run when the [StoreConnector] in [Page] will
   /// initially be created.
   ///
