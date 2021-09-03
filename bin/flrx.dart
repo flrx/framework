@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:args/command_runner.dart';
 
+import 'commands/generate.dart';
 import 'commands/make_page.dart';
 import 'commands/make_rule.dart';
 
@@ -10,6 +11,7 @@ void main(List<String> arguments) async {
   var registerCommands = <Command>[
     MakePageCommand(),
     MakeRuleCommand(),
+    GenerateCommand(),
   ];
   var runner = CommandRunner(
     'flrx',
