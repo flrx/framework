@@ -10,5 +10,6 @@ Middleware<State> getReduxLoggingMiddleware<State>() {
   loggingMiddleware.logger.onRecord.where((native_logger.LogRecord record) {
     return record.loggerName == loggingMiddleware.logger.name;
   }).listen(log);
+
   return loggingMiddleware;
 }

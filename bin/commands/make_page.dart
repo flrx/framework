@@ -40,6 +40,7 @@ class MakePageCommand extends Command with ModuleParser {
   FutureOr run() {
     createPage();
     createViewModel();
+
     return 0;
   }
 
@@ -47,29 +48,31 @@ class MakePageCommand extends Command with ModuleParser {
     var pageFileName = ReCase(pageName).snakeCase;
 
     StubUtils.generateFileFromStub(
-        stubPath: '/stubs/pages/stateless_page',
-        destPath: path + pageFileName,
-        stubReplacements: <String, String>{
-          'SRC_PATH': (await ApplicationUtils.getName())+ modulePath,
-          'VIEWMODEL_FILENAME': '${ReCase(pageName).snakeCase}_vm',
-          'VIEWMODEL_NAME': viewModelName,
-          'PAGE_NAME': pageName,
-          'STATE_FILENAME': ReCase(stateName).snakeCase,
-          'STATE': stateName,
-        });
+      stubPath: '/stubs/pages/stateless_page',
+      destPath: path + pageFileName,
+      stubReplacements: <String, String>{
+        'SRC_PATH': (await ApplicationUtils.getName()) + modulePath,
+        'VIEWMODEL_FILENAME': '${ReCase(pageName).snakeCase}_vm',
+        'VIEWMODEL_NAME': viewModelName,
+        'PAGE_NAME': pageName,
+        'STATE_FILENAME': ReCase(stateName).snakeCase,
+        'STATE': stateName,
+      },
+    );
   }
 
   void createViewModel() async {
     var viewModelPath = '${path}viewmodels/${ReCase(pageName).snakeCase}_vm';
 
     StubUtils.generateFileFromStub(
-        stubPath: '/stubs/pages/viewmodels/stateless_page_vm',
-        destPath: viewModelPath,
-        stubReplacements: <String, String>{
-          'SRC_PATH': (await ApplicationUtils.getName())+ modulePath,
-          'VIEWMODEL_NAME': viewModelName,
-          'STATE_FILENAME': ReCase(stateName).snakeCase,
-          'STATE': stateName,
-        });
+      stubPath: '/stubs/pages/viewmodels/stateless_page_vm',
+      destPath: viewModelPath,
+      stubReplacements: <String, String>{
+        'SRC_PATH': (await ApplicationUtils.getName()) + modulePath,
+        'VIEWMODEL_NAME': viewModelName,
+        'STATE_FILENAME': ReCase(stateName).snakeCase,
+        'STATE': stateName,
+      },
+    );
   }
 }

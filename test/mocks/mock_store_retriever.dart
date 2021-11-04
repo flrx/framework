@@ -21,15 +21,13 @@ class MockStoreRetriever extends StoreRetriever<MockAppState> {
 }
 
 class MockAppState {
-  MockAppState(String? mockData) {
-    this.mockData = mockData;
-  }
+  String? mockData;
+
+  MockAppState(this.mockData);
 
   factory MockAppState.initialState() {
     return MockAppState('');
   }
-
-  String? mockData;
 
   static MockAppState fromJson(dynamic jsonData) {
     return MockAppState(json.decode(jsonData));
@@ -43,6 +41,7 @@ class MockReducer {
     if (action is MockAction) {
       return MockAppState(action.mockData);
     }
+
     return prevMockAppState;
   }
 }
@@ -54,7 +53,10 @@ class MockAction {
 class MockMiddlewareAction {}
 
 void mockMiddleware<MockAppState>(
-    Store<MockAppState> store, dynamic action, NextDispatcher next) {
+  Store<MockAppState> store,
+  dynamic action,
+  NextDispatcher next,
+) {
   if (action is MockMiddlewareAction) {
     store.dispatch(MockAction);
   } else {

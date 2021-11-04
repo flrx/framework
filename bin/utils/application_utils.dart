@@ -8,6 +8,7 @@ class ApplicationUtils {
     var pubspecYamlFile = File('pubspec.yaml');
     var pubspecYamlStr = await pubspecYamlFile.readAsString();
     YamlMap pubspecYaml = loadYaml(pubspecYamlStr);
+
     return pubspecYaml['name'];
   }
 

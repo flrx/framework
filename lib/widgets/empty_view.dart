@@ -97,6 +97,7 @@ class EmptyView extends StatelessWidget {
       return null;
     }
     var size = emptyViewMessage.illustrationSize;
+
     return Image(
       height: size!.height,
       width: size.width,

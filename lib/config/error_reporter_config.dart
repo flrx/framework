@@ -22,6 +22,7 @@ class ErrorReporterConfig {
 
   ErrorWidgetBuilder? get defaultErrorWidgetBuilder {
     Catcher.addDefaultErrorWidget();
+
     return ErrorWidget.builder;
   }
 }

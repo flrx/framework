@@ -7,7 +7,7 @@ abstract class ApplicationConfig {
 
   List<Module> get modules;
 
-  ErrorReporterConfig get errorReporterConfig => ErrorReporterConfig();
+  ErrorReporterConfig get errorReporterConfig => const ErrorReporterConfig();
 
   GlobalKey<NavigatorState>? get navigatorKey => null;
 }

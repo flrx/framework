@@ -12,8 +12,8 @@ void main() {
     module.routes().forEach(AppRouter.registerRoute);
 
     test('module_test', () {
-      var match = AppRouter.router.match(MockModule.HOME);
-      expect(match?.route.route, MockModule.HOME);
+      var match = AppRouter.router.match(MockModule.home);
+      expect(match?.route.route, MockModule.home);
     });
 
     test('unavailable_test', () {

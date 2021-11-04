@@ -3,12 +3,13 @@ import 'package:flutter/material.dart';
 
 class StatusWidget extends StatelessWidget {
   const StatusWidget({
+    Key? key,
     required this.status,
     required this.onSuccess,
     required this.onFailed,
     this.onInitial,
     this.onFetching = _defaultFetchWidget,
-  });
+  }) : super(key: key);
 
   final Status status;
 

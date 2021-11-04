@@ -39,8 +39,8 @@ class MockModuleWithInvalidRoutes extends MockModule {
   @override
   Map<String, RouteWidgetBuilder> routes() {
     return {
-      MockModule.HOME: (args) => Container(),
-      MockModule.INVALID_ROUTE: (args) => Scaffold(),
+      MockModule.home: (args) => Container(),
+      MockModule.invalidRoute: (args) => const Scaffold(),
     };
   }
 }
@@ -49,9 +49,9 @@ class MockModule extends Module {
   @override
   String get name => 'mock';
 
-  static const HOME = '/';
-  static const INVALID_ROUTE = 'invalid-route';
-  static const MOCK = '/mock';
+  static const home = '/';
+  static const invalidRoute = 'invalid-route';
+  static const mock = '/mock';
 
   @override
   bool get shouldNamespaceRoutes => false;
@@ -59,8 +59,8 @@ class MockModule extends Module {
   @override
   Map<String, RouteWidgetBuilder> routes() {
     return {
-      HOME: (args) => Container(),
-      MOCK: (args) => Scaffold(),
+      home: (args) => Container(),
+      mock: (args) => const Scaffold(),
     };
   }
 

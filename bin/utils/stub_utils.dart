@@ -28,11 +28,14 @@ class StubUtils {
   }
 
   static String _stubReplace(
-      String stubToReplace, Map<String, String> replacementMap) {
+    String stubToReplace,
+    Map<String, String> replacementMap,
+  ) {
     replacementMap.forEach((String key, String value) {
       var keyToReplace = '%$key%';
       stubToReplace = stubToReplace.replaceAll(RegExp(keyToReplace), value);
     });
+
     return stubToReplace;
   }
 }

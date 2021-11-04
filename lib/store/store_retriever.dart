@@ -10,8 +10,11 @@ abstract class StoreRetriever<State> {
 
   Future<Store<State>> retrieveStore() async {
     // Load initial state
-    return Store<State>(getPrimaryReducer(),
-        initialState: await getInitialState(), middleware: getMiddlewares());
+    return Store<State>(
+      getPrimaryReducer(),
+      initialState: await getInitialState(),
+      middleware: getMiddlewares(),
+    );
   }
 
   List<Middleware<State>> getMiddlewares();

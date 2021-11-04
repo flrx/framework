@@ -4,7 +4,6 @@ import 'package:flrx/flrx.dart';
 import 'package:get_it/get_it.dart';
 
 abstract class Module {
-
   const Module();
 
   /// Name of the [Module]. This [name] will be used as namespace when prefixing
@@ -54,7 +53,10 @@ abstract class Module {
     throwIf(
       !route.startsWith('/'),
       ArgumentError.value(
-          route, 'Route', "Should begin with '/' in module $name"),
+        route,
+        'Route',
+        "Should begin with '/' in module $name",
+      ),
     );
   }
 }

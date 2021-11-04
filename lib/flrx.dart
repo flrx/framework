@@ -6,7 +6,6 @@
 library flrx;
 
 export 'application.dart';
-export 'components/localization/localization.dart';
 export 'components/logger/logger.dart';
 export 'config/config.dart';
 export 'navigation/router.dart';

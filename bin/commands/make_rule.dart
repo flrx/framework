@@ -26,6 +26,7 @@ class MakeRuleCommand extends Command with ModuleParser {
   @override
   FutureOr run() {
     createRule();
+
     return 0;
   }
 
@@ -33,10 +34,11 @@ class MakeRuleCommand extends Command with ModuleParser {
     var ruleFileName = ReCase(ruleName).snakeCase;
 
     StubUtils.generateFileFromStub(
-        stubPath: '/stubs/validator/rule',
-        destPath: path + ruleFileName,
-        stubReplacements: <String, String>{
-          'RULE_NAME': ruleName,
-        });
+      stubPath: '/stubs/validator/rule',
+      destPath: path + ruleFileName,
+      stubReplacements: <String, String>{
+        'RULE_NAME': ruleName,
+      },
+    );
   }
 }

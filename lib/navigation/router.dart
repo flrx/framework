@@ -15,12 +15,15 @@ class AppRouter {
       _registerNotFoundHandler(builder: builder);
 
   static void registerRoute(String route, RouteWidgetBuilder builder) {
-    router.define(route,
-        handler: _createHandlerFromRouteWidgetBuilder(builder));
+    router.define(
+      route,
+      handler: _createHandlerFromRouteWidgetBuilder(builder),
+    );
   }
 
   static Handler _createHandlerFromRouteWidgetBuilder(
-      RouteWidgetBuilder builder) {
+    RouteWidgetBuilder builder,
+  ) {
     return Handler(handlerFunc: (context, args) => builder(args));
   }
 }

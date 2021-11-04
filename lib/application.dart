@@ -12,6 +12,7 @@ class Application {
   static bool get isInDebugMode {
     var inDebugMode = false;
     assert(inDebugMode = true);
+
     return inDebugMode;
   }
 
@@ -69,9 +70,10 @@ class Application {
   static ApplicationConfig get config => _config;
 
   static bool hasModuleWithName(String name) {
-    return config.modules.cast().firstWhere((element) {
-      return element.name == name;
-    }, orElse: () => null) !=
+    return config.modules.cast().firstWhere(
+              (module) => module.name == name,
+              orElse: () => null,
+            ) !=
         null;
   }
 }

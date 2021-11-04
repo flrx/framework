@@ -4,7 +4,7 @@ import 'package:flutter/widgets.dart';
 
 class PageNotFound extends StatelessWidget {
 
-  const PageNotFound();
+  const PageNotFound({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

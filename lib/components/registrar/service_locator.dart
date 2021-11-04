@@ -7,6 +7,7 @@ class ServiceLocator {
 
   factory ServiceLocator() {
     _instance ??= ServiceLocator._();
+
     return _instance!;
   }
 
@@ -18,8 +19,10 @@ class ServiceLocator {
   void registerSingleton<T extends Object>(T instance, [String? name]) =>
       _serviceLocator.registerSingleton<T>(instance, instanceName: name);
 
-  void registerLazySingleton<T extends Object>(T Function() instance,
-          [String? name]) =>
+  void registerLazySingleton<T extends Object>(
+    T Function() instance, [
+    String? name,
+  ]) =>
       _serviceLocator.registerLazySingleton<T>(instance, instanceName: name);
 
   void registerLazy<T extends Object>(T Function() instance, [String? name]) =>
