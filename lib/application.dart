@@ -24,9 +24,10 @@ class Application {
   }) async {
     Application._config = config;
 
-    await registerModules();
-
-    setupErrorManagement(config, initApp);
+    setupErrorManagement(
+      config,
+      () => registerModules().then((value) => initApp()),
+    );
   }
 
   static void setupErrorManagement(
