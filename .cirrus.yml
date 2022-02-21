@@ -1,15 +1,20 @@
 container:
   image: cirrusci/flutter:latest
 
+setup_task:
+  setup_script:
+    - dart pub global activate melos
+    - melos bootstrap
+
 style_task:
   test_style_script:
-    - flutter format -n --set-exit-if-changed lib test
+    - melos run format
 
 test_task:
   env:
     CODECOV_TOKEN: ENCRYPTED[49005b04b47f7c671439dcde4bea2cf02d603ef7dc7a36660cef2041261a66b5e1ea47e7e95ddfd3e2b6bcb237b553b1]
   pub_cache:
     folder: ~/.pub-cache
-  test_script: flutter test --coverage
+  test_script: melos run test
   codecov_script:
     - bash <(curl -s https://codecov.io/bash) -t $CODE_COV_TOKEN

@@ -1,4 +1,3 @@
-import 'package:flrx/application.dart';
 import 'package:flrx/components/modules/module.dart';
 import 'package:flrx/flrx.dart';
 import 'package:fluro/fluro.dart';
@@ -68,13 +67,13 @@ void main() {
 
     Application.serviceLocator.registerSingleton<Logger>(mockLogger);
 
-    await Application.init(
+    Application(
       () async {},
-      config: MockConfig([
+      appConfig: MockConfig([
         MockModule1(),
         MockModule2(),
       ]),
-    );
+    ).init();
 
     verifyInOrder([
       mockLogger.log(log.Level.info, 'Register Module 1'),

@@ -1,6 +1,5 @@
 import 'package:flrx/components/modules/module.dart';
 import 'package:flrx/flrx.dart';
-import 'package:flrx/navigation/router.dart';
 import 'package:flutter/material.dart';
 
 class MockModuleWithNamespacedRoute extends MockModule {

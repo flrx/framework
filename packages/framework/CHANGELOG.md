@@ -1,3 +1,33 @@
+## [V0.0.9]
+### Added
+- `flrx_test` Library for testing flrx applications
+
+
+## [V0.0.8]
+### Added
+- Add `gen` command for `flutter_native_splash`, `flutter_launcher_icons`, `define_env`
+- Add method to check if module exists with a specific name
+- Add application config, Change error reporter
+- Add new Logger
+
+### Changed
+- Setup Error management, then init app
+- Add const optimizations
+
+### Removed
+- Remove Localizer
+
+## [V0.0.7]
+### Changed
+- Update Dependencies 
+- Clean code based on pedantic rules
+- Update to nullsafety
+
+### Removed  
+- Remove Deprecated features
+- Remove flrx_validator
+- Make Service Locator a singleton, Ensure better concurrency for Module registration
+
 ## [v0.0.6]
 ### Added
 - Added `Module`s in place of Retrievers. Modules can be used to setup routes, and register implementations of abstract classes.

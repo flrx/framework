@@ -1,4 +1,3 @@
-import 'package:flrx/application.dart';
 import 'package:flrx/components/registrar/service_locator.dart';
 import 'package:flrx/flrx.dart';
 import 'package:get_it/get_it.dart';

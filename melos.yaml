@@ -1,0 +1,9 @@
+name: flrx
+
+packages:
+  - packages/**
+
+scripts:
+  analyze: melos exec -- "dart analyze ."
+  style: melos exec -- "flutter format -n --set-exit-if-changed lib test"
+  test: melos exec -- "flutter test --coverage"
