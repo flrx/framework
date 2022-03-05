@@ -7,6 +7,12 @@ An opinionated library for using Redux with Flutter.
 
 ## Getting Started
 
+```shell
+dart pub global activate mason_cli
+mason add flrx -g --git-url https://github.com/flrx/framework
+mason make flrx
+```
+
 ## Recommended Packages
 
 | Package        | Version           |
