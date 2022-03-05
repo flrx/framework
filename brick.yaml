@@ -1,5 +1,5 @@
-name: "flrx"
-description: "Flrx template."
+name: "flrx:project"
+description: "Create a new flrx project"
 
 # The following defines the version and build number for your brick.
 # A version number is three numbers separated by dots, like 1.2.34

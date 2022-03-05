@@ -1,9 +1,20 @@
 name: flrx
+repository: https://github.com/flrx/framework
 
 packages:
   - packages/**
 
+command:
+  version:
+    linkToCommits: true
+    workspaceChangelog: true
+
 scripts:
+  setup_example: mason make flrx:project -o packages/example --name example
+  bootstrap:
+    name: "Pre Bootstrap Check"
+    description: 'Greet the world'
+    run:  .scripts/check.sh
   analyze: melos exec -- "dart analyze ."
   style: melos exec -- "flutter format -n --set-exit-if-changed lib test"
   test: melos exec -- "flutter test --coverage"
