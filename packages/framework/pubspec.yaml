@@ -1,6 +1,6 @@
 name: flrx
 description: A Redux Application Framework.
-version: 0.0.9
+version: 0.0.10
 homepage: https://github.com/flrx/framework
 
 environment:
@@ -12,7 +12,7 @@ dependencies:
   fluro: ^2.0.3
   flutter:
     sdk: flutter
-  flutter_redux: ^0.8.2
+  flutter_redux: ^0.9.0
   get_it: ^7.2.0
   logger: ^1.1.0
   meta: ^1.7.0

@@ -10,12 +10,12 @@ class CatcherErrorManager extends ErrorManager {
   CatcherErrorManager({required this.catcherConfig, this.navigatorKey});
 
   @override
-  void init(VoidCallback runAppFunction) {
+  Future<void> init(VoidCallback runAppFunction) async {
     var catcher = Catcher(
       runAppFunction: runAppFunction,
-      debugConfig: catcherConfig.catcherDebugOptions(),
-      profileConfig: catcherConfig.catcherProfileOptions(),
-      releaseConfig: catcherConfig.catcherReleaseOptions(),
+      debugConfig: await catcherConfig.catcherDebugOptions(),
+      profileConfig: await catcherConfig.catcherProfileOptions(),
+      releaseConfig: await catcherConfig.catcherReleaseOptions(),
       enableLogger: catcherConfig.isLoggingEnabled(),
       navigatorKey: navigatorKey,
     );
@@ -30,15 +30,15 @@ class CatcherErrorManager extends ErrorManager {
 }
 
 class CatcherConfig {
-  CatcherOptions catcherDebugOptions() {
+  Future<CatcherOptions> catcherDebugOptions() async {
     return CatcherOptions.getDefaultDebugOptions();
   }
 
-  CatcherOptions catcherProfileOptions() {
+  Future<CatcherOptions> catcherProfileOptions() async {
     return CatcherOptions.getDefaultProfileOptions();
   }
 
-  CatcherOptions catcherReleaseOptions() {
+  Future<CatcherOptions> catcherReleaseOptions() async {
     return CatcherOptions.getDefaultReleaseOptions();
   }
 

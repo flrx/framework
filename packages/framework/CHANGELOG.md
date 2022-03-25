@@ -1,3 +1,8 @@
+## [v0.0.10]
+### Changed
+- `CatcherConfig` now returns asynchronously
+- Updated flutter_redux version
+
 ## [V0.0.9]
 ### Added
 - `flrx_test` Library for testing flrx applications
