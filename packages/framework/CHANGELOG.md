@@ -1,3 +1,7 @@
+## [v0.0.11]
+### Changed
+- ErrorManager now accepts an AsyncCallback instead of VoidCallback
+
 ## [v0.0.10]
 ### Changed
 - `CatcherConfig` now returns asynchronously

@@ -1,0 +1,8 @@
+## See https://github.com/fluttercommunity/flutter_launcher_icons/blob/master/README.md#book-guide
+flutter_icons:
+  image_path: "logo.png"
+
+  android: true
+
+  ios: true
+  remove_alpha_ios: true

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flrx/components/error_manager/error_manager.dart';
 import 'package:flutter/foundation.dart';
 
@@ -7,7 +5,7 @@ class TestErrorManager extends ErrorManager {
   TestErrorManager() : super();
 
   @override
-  void init(VoidCallback runAppFunction) => runAppFunction();
+  Future<void> init(AsyncCallback runAppFunction) => runAppFunction();
 
   @override
   void reportCheckedError(error, stackTrace) {

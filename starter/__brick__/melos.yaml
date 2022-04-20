@@ -1,0 +1,64 @@
+name: {{name}}
+
+packages:
+  - /**
+
+scripts:
+  postbootstrap:
+    run: melos run gen
+
+  analyze:
+    run: melos exec -c 1 -- flutter analyze .
+    description: |
+      Run `flutter analyze` in all packages.
+       - Note: you can also rely on your IDEs Dart Analysis / Issues window.
+  gen:
+    name: "gen"
+    description: "Run all generate scripts to build"
+    run: "melos gen:build && melos gen:icons && melos gen:splash && melos gen:assets"
+
+  # Build Runner Scripts
+  gen:build:
+    name: "gen:build"
+    description: 'Build generated files from build_runner'
+    run: melos exec -c 1 --depends-on="build_runner" -- "flutter pub run build_runner build --delete-conflicting-outputs"
+
+  gen:watch:
+    name: "gen:watch"
+    description: 'Build generated files from build_runner and watch them for changes'
+    run: melos exec -c 1 --depends-on="build_runner" -- "flutter pub run build_runner watch --delete-conflicting-outputs"
+
+  # Generate Icons
+  gen:icons:
+    name: "gen:icons"
+    description: 'Generate Launcher Icons'
+    run: melos exec --scope "{{name}}" -- "flutter pub run flutter_launcher_icons:main -f config/icons.yaml"
+
+  # Generate Splash Screens
+  gen:splash:
+    name: "gen:splash"
+    description: 'Generate Splash Screen'
+    run: melos exec --scope "{{name}}" -- "flutter pub run flutter_native_splash:create --path=config/splash.yaml"
+
+  # Generate Assets
+  gen:assets:
+    name: "gen:assets"
+    description: 'Generate assets using spider'
+    run: melos exec --file-exists="spider.yaml" -- "spider build"
+
+  # Generate Dart define string
+  env:print:
+    name: "env:print"
+    description: 'Generate Dart define strings from env and print to console'
+    run: melos exec --scope "{{name}}" -- "define_env -s config/env.yaml"
+
+  env:copy:
+    name: "env:copy"
+    description: 'Generate Dart define strings from env and copy to clipboard'
+    run: melos exec --scope "{{name}}" -- "define_env -s config/env.yaml --no-print -c"
+
+  # Run Tests
+  test:
+    name: "test"
+    description: 'Run all unit tests'
+    run: melos exec --dir-exists test --flutter -- "flutter test --coverage"
