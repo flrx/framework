@@ -1,3 +1,7 @@
+## [v0.0.12]
+### Added 
+- [Repository], [FakeRepository] and [NetworkRepository] for fetching data.
+
 ## [v0.0.11]
 ### Changed
 - ErrorManager now accepts an AsyncCallback instead of VoidCallback

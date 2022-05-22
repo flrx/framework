@@ -124,7 +124,7 @@ class TestStore<State> implements Store<State> {
   /// through to the reducer.
   @override
   dynamic dispatch(dynamic action) {
-    debugPrint(action);
+    debugPrint(action.toString());
     dispatchedActions.add(action);
 
     return _dispatchers[0](action);

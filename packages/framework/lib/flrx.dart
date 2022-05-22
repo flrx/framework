@@ -11,4 +11,8 @@ export 'config/config.dart';
 export 'navigation/router.dart';
 export 'pages/page.dart';
 export 'pages/viewmodel.dart';
+export 'repository/data_model.dart';
+export 'repository/fake_repository.dart';
+export 'repository/network_repository.dart';
+export 'repository/repository.dart';
 export 'store/store_retriever.dart';

@@ -1,6 +1,7 @@
 name: flrx_test
-description: "Testing helpers for flrx"
-version: 0.0.2
+description: "Testing helpers and utilities for flrx framework."
+
+version: 0.0.3
 homepage: https://github.com/flrx/framework
 
 environment:
