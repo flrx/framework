@@ -5,10 +5,17 @@
 /// TODO Links to external references on the domain the library is concerned with.
 library flrx;
 
+export 'package:go_router/go_router.dart';
+
+// export 'package:vrouter/vrouter.dart';
+
 export 'application.dart';
 export 'components/logger/logger.dart';
 export 'config/config.dart';
+export 'navigation/base_route.dart';
+export 'navigation/nested_route.dart';
 export 'navigation/router.dart';
+export 'navigation/widget_route.dart';
 export 'pages/page.dart';
 export 'pages/viewmodel.dart';
 export 'repository/data_model.dart';

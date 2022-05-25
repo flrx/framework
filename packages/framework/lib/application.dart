@@ -44,9 +44,12 @@ class Application {
     /// The Completer is so we know when the runApp has started running.
     Completer initAppCompleter = Completer();
 
-    withErrorManagement(() => registerModules()
-        .then((_) => initApp())
-        .then(initAppCompleter.complete));
+    /// Have to setup AppRouter before error management
+    /// if we want to use Navigator Key
+    withErrorManagement(() =>
+        registerModules(appConfig.modules, registerRoutes: true)
+            .then((_) => initApp())
+            .then(initAppCompleter.complete));
 
     return initAppCompleter.future;
   }
@@ -59,17 +62,24 @@ class Application {
     _serviceLocator.get<ErrorManager>().init(initApp);
   }
 
-  Future registerModules() async {
+  Future registerModules(
+    List<Module> modules, {
+    required bool registerRoutes,
+  }) async {
     // Wait for all modules to initialize
-    await Future.forEach<Module>(
-      appConfig.modules,
-      (module) => module.initialize(),
-    );
-
+    await Future.forEach<Module>(modules, (module) => module.register());
+    if (registerRoutes) {
+      await Future.forEach<Module>(
+        modules,
+        (module) => module.registerRoutes(),
+      );
+    }
     // Wait for all modules to boot
+    await Future.forEach<Module>(modules, (module) => module.boot());
+
     await Future.forEach<Module>(
-      appConfig.modules,
-      (module) => module.boot(),
+      modules,
+      (module) => registerModules(module.submodules, registerRoutes: false),
     );
   }
 
