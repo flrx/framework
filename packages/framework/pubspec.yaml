@@ -1,6 +1,6 @@
 name: flrx
 description: "An opinionated application Framework using redux for the State Management."
-version: 0.0.12
+version: 0.0.13
 homepage: https://github.com/flrx/framework
 
 environment:
@@ -8,7 +8,6 @@ environment:
 
 dependencies:
   args: ^2.3.0
-  catcher: ^0.6.8
   collection: ^1.15.0
   dio: ^4.0.6
   data_fixture_dart: ^2.1.0
