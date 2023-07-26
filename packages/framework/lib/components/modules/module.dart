@@ -1,7 +1,6 @@
 import 'package:flrx/components/registrar/service_locator.dart';
 import 'package:flrx/flrx.dart';
 import 'package:flutter/widgets.dart';
-import 'package:get_it/get_it.dart';
 
 abstract class Module {
   const Module();
@@ -35,12 +34,16 @@ abstract class Module {
   /// Within the [register] method, you should only bind things into the service
   /// locator. You should never attempt to register any event listeners, routes,
   /// or any other piece of functionality within the register method.
-  Future<void> register() async {}
+  Future<void> register() async {
+    return;
+  }
 
   /// This method is called after all other [Module]s have been registered,
   /// meaning you have access to all other services that have been registered
   /// by the framework
-  Future<void> boot() async {}
+  Future<void> boot() async {
+    return;
+  }
 
   void registerRoutes() {
     /// Gets all routes as siblings
@@ -51,6 +54,7 @@ abstract class Module {
 
     if (moduleRootRouteIndex == -1) {
       finalRouteList.forEach(registerRoute);
+
       return;
     }
 
@@ -59,7 +63,9 @@ abstract class Module {
     var submoduleRoutes = getSubmoduleRoutes();
 
     if (moduleRootRoute is WidgetRoute) {
-      moduleRootRoute.routes.addAll(submoduleRoutes);
+      var oldRouteList = moduleRootRoute.routes;
+      var newList = [...oldRouteList, ...submoduleRoutes];
+      moduleRootRoute.routes = newList;
     }
 
     // if (moduleRootRoute is NestedRoute) {
@@ -90,14 +96,14 @@ abstract class Module {
     AppRouter.registerRoute(route);
   }
 
-  void _validateRouteName(String route) {
-    throwIf(
-      !route.startsWith('/'),
-      ArgumentError.value(
-        route,
-        'Route',
-        "Should begin with '/' in module $name",
-      ),
-    );
-  }
+  // void _validateRouteName(String route) {
+  //   throwIf(
+  //     !route.startsWith('/'),
+  //     ArgumentError.value(
+  //       route,
+  //       'Route',
+  //       "Should begin with '/' in module $name",
+  //     ),
+  //   );
+  // }
 }

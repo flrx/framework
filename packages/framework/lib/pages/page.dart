@@ -15,13 +15,15 @@ import 'package:redux/redux.dart';
 /// The [Page] mixin takes a [State] defined for the app and
 /// a [ViewModel] defined for the widget using this mixin.
 ///
-abstract class Page<State, V extends ViewModel<State>> {
+mixin Page<State, V extends ViewModel<State>> {
   /// A function that will run when the [StoreConnector] in [Page] will
   /// initially be created.
   ///
   /// This can be useful for dispatching actions that fetch data for your Widget
   /// when it is first displayed.
-  void onInit(Store<State> store) {}
+  void onInit(Store<State> store) {
+    return;
+  }
 
   /// A function that will be run after the Widget is built the first time.
   ///
@@ -30,7 +32,9 @@ abstract class Page<State, V extends ViewModel<State>> {
   ///
   /// This can be useful for starting certain animations, such as showing
   /// Snackbars, after the Widget is built the first time.
-  void onInitialBuild(V viewModel) {}
+  void onInitialBuild(V viewModel) {
+    return;
+  }
 
   /// A function to initialize the `ViewModel` for the current page
   ///
@@ -45,7 +49,9 @@ abstract class Page<State, V extends ViewModel<State>> {
     BuildContext context,
     V? previousViewModel,
     V newViewModel,
-  ) {}
+  ) {
+    return;
+  }
 
   /// A function building the logic for the page
   ///
@@ -88,7 +94,9 @@ abstract class Page<State, V extends ViewModel<State>> {
     BuildContext context,
     V? previousViewModel,
     V newViewModel,
-  ) {}
+  ) {
+    return;
+  }
 
   /// A function that will be run when the StoreConnector is removed from the
   /// Widget Tree.
@@ -97,5 +105,7 @@ abstract class Page<State, V extends ViewModel<State>> {
   ///
   /// This can be useful for dispatching actions that remove stale data from
   /// your State tree.
-  void onDispose(Store<State> store) {}
+  void onDispose(Store<State> store) {
+    return;
+  }
 }

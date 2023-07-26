@@ -19,7 +19,7 @@ void main() {
   test('That modules can register an instance in service locator', () async {
     Module module = MockModule();
 
-    await module.initialize();
+    await module.register();
 
     var instance = Application.get<RandomClass>();
     expect(instance is RandomClass, true);
@@ -29,7 +29,7 @@ void main() {
     Module module = MockModule();
     // var router = AppRouter.goRouter;
 
-    await module.initialize();
+    await module.register();
 
     expect(module.shouldNamespaceRoutes, false);
 
@@ -42,7 +42,7 @@ void main() {
 
     // var router = AppRouter.goRouter;
 
-    await module.initialize();
+    await module.register();
 
     expect(module.shouldNamespaceRoutes, true);
     // expect(routeHandlerForPath(router, 'mock/') != null, true);
@@ -54,7 +54,7 @@ void main() {
   test('That modules can register route that are namespaced', () async {
     Module module = MockModuleWithInvalidRoutes();
     try {
-      await module.initialize();
+      await module.register();
       fail('Module did not throw exception');
     } catch (exception) {
       expect(exception is ArgumentError, true);
@@ -67,7 +67,9 @@ void main() {
     Application.serviceLocator.registerSingleton<Logger>(mockLogger);
 
     Application(
-      () async {},
+      () async {
+        return;
+      },
       appConfig: MockConfig([
         MockModule1(),
         MockModule2(),

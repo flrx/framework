@@ -5,19 +5,19 @@ version: 0.0.3
 homepage: https://github.com/flrx/framework
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: ">=3.0.0 <4.0.0"
 
 dependencies:
   redux: ^5.0.0
-  shared_preferences: ^2.0.13
+  shared_preferences: ^2.2.0
   flutter:
     sdk: flutter
   flutter_test:
     sdk: flutter
-  flrx: ^0.0.11
+  flrx: ^0.0.12
 
 dev_dependencies:
-  flutter_lints: ^1.0.0
+  flutter_lints: ^2.0.2
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

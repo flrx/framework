@@ -1,9 +1,6 @@
 import 'package:flrx/flrx.dart';
-import 'package:flrx/navigation/base_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:go_router/go_router.dart';
-// import 'package:vrouter/vrouter.dart';
 
 class WidgetRoute extends BaseRoute {
   final Widget Function(
@@ -11,7 +8,7 @@ class WidgetRoute extends BaseRoute {
     Map<String, String> queryParams,
   ) widgetBuilder;
 
-  final List<BaseRoute> routes;
+  List<BaseRoute> routes;
 
   WidgetRoute({
     required String? path,
@@ -24,8 +21,10 @@ class WidgetRoute extends BaseRoute {
     return GoRoute(
       path: path ?? '',
       builder: (context, state) =>
-          widgetBuilder(state.params, state.queryParams),
-      routes: routes.map((route) => route.toGoRoute()).toList(),
+          widgetBuilder(state.pathParameters, state.uri.queryParameters),
+      routes: routes.isNotEmpty
+          ? routes.map((route) => route.toGoRoute()).toList(growable: true)
+          : [],
     );
   }
 

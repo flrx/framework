@@ -1,22 +1,23 @@
-import 'package:flrx/components/modules/module.dart';
+// import 'package:flrx/components/modules/module.dart';
 import 'package:test/test.dart';
 
-import '../mocks/mock_module.dart';
+// import '../mocks/mock_module.dart';
 
 void main() {
   group('AppRouter init test', () {
-    Module module = MockModule();
+    // Module module = MockModule();
     // module.routes().forEach(AppRouter.registerRoute);
 
-    test('module_test', () {
+    // test('module_test', () {
       // var match = AppRouter.router.match(MockModule.home);
       // expect(match?.route.route, MockModule.home);
-    });
+    // });
 
-    test('unavailable_test', () {
+    // test('unavailable_test', () {
       // var match = AppRouter.router.match('/unknown');
       // expect(match, null);
-    });
+    // });
+    return;
   });
 
   group('Not Found Handler', () {
@@ -32,6 +33,7 @@ void main() {
 
       // expect(router.routerDelegate.errorBuilder != null, true);
       // expect(router.routerDelegate.errorBuilder!(null, {}), container);
+      return;
     });
   });
 }

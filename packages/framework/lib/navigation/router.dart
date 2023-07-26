@@ -70,7 +70,7 @@ class AppRouter {
   // }
 
   static String getNamespaceRouterState(GoRouterState state) {
-    return state.location.substring(1);
+    return state.uri.toString().substring(1);
   }
 
   static List<GoRoute> _buildGoRoutes() {
@@ -82,8 +82,8 @@ class AppRouter {
     RouteWidgetBuilder builder,
   ) {
     return (context, state) {
-      var pathParams = state.params;
-      var queryParams = state.queryParams;
+      var pathParams = state.pathParameters;
+      var queryParams = state.uri.queryParameters;
       var params = pathParams.map((key, value) {
         return MapEntry(key, [value]);
       });

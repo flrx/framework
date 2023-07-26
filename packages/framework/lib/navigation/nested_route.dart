@@ -1,7 +1,6 @@
 import 'package:flrx/navigation/base_route.dart';
 import 'package:flutter/widgets.dart';
 import 'package:go_router/go_router.dart';
-import 'package:vrouter/vrouter.dart';
 
 class NestedRoute extends BaseRoute {
   final Widget Function(Widget child) widgetBuilder;
@@ -26,12 +25,12 @@ class NestedRoute extends BaseRoute {
     );
   }
 
-  @override
-  VRouteElementBuilder toVRoute() {
-    return VNester(
-      path: path,
-      widgetBuilder: widgetBuilder,
-      nestedRoutes: nestedRoutes.map((e) => e.toVRoute()).toList(),
-    );
-  }
+  // @override
+  // VRouteElementBuilder toVRoute() {
+  //   return VNester(
+  //     path: path,
+  //     widgetBuilder: widgetBuilder,
+  //     nestedRoutes: nestedRoutes.map((e) => e.toVRoute()).toList(),
+  //   );
+  // }
 }

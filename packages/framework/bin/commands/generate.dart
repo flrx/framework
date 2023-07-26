@@ -13,7 +13,7 @@ class GenerateCommand extends Command with ModuleParser {
   final String name = 'gen';
 
   GenerateCommand() {
-    //
+    return;
   }
 
   @override
