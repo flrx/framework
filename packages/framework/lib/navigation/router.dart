@@ -9,7 +9,7 @@ class AppRouter {
   RouteWidgetBuilder? _errorBuilder;
 
   static GlobalKey<NavigatorState> get navigatorKey =>
-      _goRouter!.routerDelegate.navigatorKey;
+      Application.config.navigatorKey;
 
   static AppRouter get _instance {
     __instance ??= AppRouter();
@@ -33,7 +33,7 @@ class AppRouter {
   static GoRouter get goRouter {
     _goRouter ??= GoRouter(
       routes: _buildGoRoutes(),
-
+      navigatorKey: Application.config.navigatorKey,
       /// Replace this after (https://github.com/flutter/flutter/issues/99126) gets fixed
       /// We should be using ShellRoute or something similar
       // navigatorBuilder: _createNavigatorBuilder,
@@ -73,7 +73,7 @@ class AppRouter {
     return state.uri.toString().substring(1);
   }
 
-  static List<GoRoute> _buildGoRoutes() {
+  static List<RouteBase> _buildGoRoutes() {
     return _instance._routes.map((route) => route.toGoRoute()).toList();
   }
 

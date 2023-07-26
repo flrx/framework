@@ -6,22 +6,26 @@ class WidgetRoute extends BaseRoute {
   final Widget Function(
     Map<String, String> pathParams,
     Map<String, String> queryParams,
-  ) widgetBuilder;
+  )? widgetBuilder;
 
   List<BaseRoute> routes;
 
+  @Deprecated("Remove this")
+  RouteBase? goRoute;
+
   WidgetRoute({
-    required String? path,
-    required this.widgetBuilder,
+    String? path,
+    this.widgetBuilder,
     this.routes = const [],
+    this.goRoute,
   }) : super(path);
 
   @override
-  GoRoute toGoRoute() {
-    return GoRoute(
+  RouteBase toGoRoute() {
+    return goRoute ?? GoRoute(
       path: path ?? '',
       builder: (context, state) =>
-          widgetBuilder(state.pathParameters, state.uri.queryParameters),
+          widgetBuilder!(state.pathParameters, state.uri.queryParameters),
       routes: routes.isNotEmpty
           ? routes.map((route) => route.toGoRoute()).toList(growable: true)
           : [],

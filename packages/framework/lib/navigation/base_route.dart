@@ -6,6 +6,6 @@ abstract class BaseRoute {
 
   BaseRoute(this.path);
 
-  GoRoute toGoRoute();
+  RouteBase toGoRoute();
   // VRouteElementBuilder toVRoute();
 }
