@@ -10,7 +10,12 @@ void main() {
   test('That Application can initialize Modules', () {
     var mockModule = MockModule();
 
-    Application(() async {}, appConfig: MockConfig([mockModule])).init();
+    Application(
+      () async {
+        return;
+      },
+      appConfig: MockConfig([mockModule]),
+    ).init();
 
     var instance = Application.get<RandomClass>();
     expect(instance is RandomClass, true);

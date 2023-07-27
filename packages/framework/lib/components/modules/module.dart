@@ -1,6 +1,6 @@
 import 'package:flrx/components/registrar/service_locator.dart';
 import 'package:flrx/flrx.dart';
-import 'package:get_it/get_it.dart';
+import 'package:flutter/widgets.dart';
 
 abstract class Module {
   const Module();
@@ -19,43 +19,91 @@ abstract class Module {
 
   /// A method returning routes to be registered by the [Module],
   /// [RouteWidgetBuilder] provides the arguments by the navigator to the Widget.
-  Map<String, RouteWidgetBuilder> routes();
+  List<BaseRoute> routes();
+
+  List<Module> get submodules => [];
+
+  /// The root widget of the [Module], which will be provided as an ancestor to
+  /// all the routes registered by the [Module].
+  Widget rootWidgetBuilder(
+    BuildContext context,
+    Widget child,
+  ) =>
+      child;
 
   /// Within the [register] method, you should only bind things into the service
   /// locator. You should never attempt to register any event listeners, routes,
   /// or any other piece of functionality within the register method.
-  Future<void> register() async {}
+  Future<void> register() async {
+    return;
+  }
 
   /// This method is called after all other [Module]s have been registered,
   /// meaning you have access to all other services that have been registered
   /// by the framework
-  Future<void> boot() async {}
+  Future<void> boot() async {
+    return;
+  }
 
-  Future<void> initialize() async {
-    await register();
+  void registerRoutes() {
+    /// Gets all routes as siblings
+    List<BaseRoute> finalRouteList = routes();
+    int moduleRootRouteIndex = finalRouteList
+        .cast<BaseRoute?>()
+        .indexWhere((element) => element?.path == '/');
 
-    routes().forEach(registerRoute);
+    if (moduleRootRouteIndex == -1) {
+      finalRouteList.forEach(registerRoute);
+
+      return;
+    }
+
+    BaseRoute moduleRootRoute = finalRouteList.removeAt(moduleRootRouteIndex);
+
+    var submoduleRoutes = getSubmoduleRoutes();
+
+    if (moduleRootRoute is WidgetRoute) {
+      var oldRouteList = moduleRootRoute.routes;
+      var newList = [...oldRouteList, ...submoduleRoutes];
+      moduleRootRoute.routes = newList;
+    }
+
+    // if (moduleRootRoute is NestedRoute) {
+    //   moduleRootRoute.nestedRoutes.addAll(submoduleRoutes);
+    // }
+
+    finalRouteList.insert(moduleRootRouteIndex, moduleRootRoute);
+
+    finalRouteList.forEach(registerRoute);
+  }
+
+  Iterable<BaseRoute> getSubmoduleRoutes() {
+    return submodules.expand((element) => element.routes());
   }
 
   /// Register routes from the current [Module]
   /// This can be used to conditionally register routes from the [boot] method.
-  void registerRoute(String route, RouteWidgetBuilder builder) {
-    _validateRouteName(route);
+  void registerRoute(BaseRoute route) {
+    // _validateRouteName(route.path);
+    //
+    // if (shouldNamespaceRoutes) {
+    //   route = '/$name$route';
+    //   if (route.endsWith('/')) {
+    //     route = route.substring(0, route.length - 1);
+    //   }
+    // }
 
-    if (shouldNamespaceRoutes) {
-      route = '$name$route';
-    }
-    AppRouter.registerRoute(route, builder);
+    AppRouter.registerRoute(route);
   }
 
-  void _validateRouteName(String route) {
-    throwIf(
-      !route.startsWith('/'),
-      ArgumentError.value(
-        route,
-        'Route',
-        "Should begin with '/' in module $name",
-      ),
-    );
-  }
+  // void _validateRouteName(String route) {
+  //   throwIf(
+  //     !route.startsWith('/'),
+  //     ArgumentError.value(
+  //       route,
+  //       'Route',
+  //       "Should begin with '/' in module $name",
+  //     ),
+  //   );
+  // }
 }
